@@ -116,7 +116,7 @@ export function AccountTable({ items }: AccountTableProps) {
         onConfirm={setAppliedFilters}
       />
 
-      <div className="grid grid-cols-2 gap-3 p-3 sm:p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 sm:p-4">
         {rows.length > 0 ? (
           rows.map((item) => <AccountCard key={item.id} item={item} />)
         ) : (

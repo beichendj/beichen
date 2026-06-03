@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>三角洲租号估价表</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #132e5e;
+      --primary-light: #1a3d7a;
+      --primary-dark: #0a1f3f;
+      --primary-glow: rgba(19, 46, 94, 0.15);
+      --accent: #c9a84c;
+      --bg: #f5f3f0;
+      --card: #ffffff;
+      --text: #1a1a2e;
+      --text-secondary: #7a7a7a;
+      --border: #e0dcd6;
+      --border-focus: #1a3d7a;
+      --danger: #e03030;
+      --warning: #c9a84c;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+      --radius-sm: 6px;
+      --radius: 10px;
+      --radius-lg: 14px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 0 12px 40px;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 36px 16px 28px;
+      position: relative;
+    }
+
+    .header-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, #0a1f3f 0%, #132e5e 40%, #1a3d7a 100%);
+      border-radius: 0 0 28px 28px;
+      z-index: 0;
+    }
+
+    .header-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+      border-radius: 0 0 28px 28px;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .watermark {
+      position: absolute;
+      top: 14px;
+      left: 18px;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      z-index: 2;
+    }
+
+    .logo-wrapper {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 76px;
+      height: 76px;
+      border-radius: 16px;
+      border: 1.5px solid rgba(212, 175, 55, 0.35);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(212, 175, 55, 0.1);
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 3px;
+      margin-bottom: 18px;
+    }
+
+    .logo-img {
+      width: 70px;
+      height: 70px;
+      border-radius: 13px;
+      object-fit: cover;
+    }
+
+    .title {
+      color: #fff;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 13px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Announcement */
+    .announcement {
+      background: linear-gradient(135deg, #f7f3e8, #efe9da);
+      border: 1px solid #d4c8a8;
+      border-radius: var(--radius);
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow: hidden;
+    }
+
+    .announcement-icon {
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+
+    .announcement-scroll {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .announcement-text {
+      display: inline-block;
+      white-space: nowrap;
+      animation: marquee 18s linear infinite;
+      color: #8a7340;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    @keyframes marquee {
+      0% {
+        transform: translateX(102%);
+      }
+
+      100% {
+        transform: translateX(-102%);
+      }
+    }
+
+    /* Action Row */
+    .action-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .action-btn {
+      flex: 1;
+      padding: 10px 6px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .action-btn:hover {
+      border-color: var(--primary-light);
+      color: var(--primary);
+      background: #f0eef5;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .action-btn svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    /* Form */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+      letter-spacing: 0.3px;
+    }
+
+    .form-label .label-icon {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      flex-shrink: 0;
+    }
+
+    .form-label .label-icon.required {
+      background: var(--danger);
+    }
+
+    .form-input,
+    .form-select {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 14.5px;
+      color: var(--text);
+      background: var(--card);
+      transition: all var(--transition);
+      font-family: inherit;
+      box-shadow: var(--shadow-sm);
+      -webkit-appearance: none;
+    }
+
+    .form-input:focus,
+    .form-select:focus {
+      outline: none;
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px var(--primary-glow), var(--shadow-sm);
+    }
+
+    .form-input::placeholder {
+      color: #aca8a0;
+    }
+
+    select.form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23999' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+
+    .form-input[readonly] {
+      background: #f4f3f0;
+      color: var(--text-secondary);
+      cursor: default;
+    }
+
+    .remark-text {
+      font-size: 11.5px;
+      color: #a08040;
+      margin-top: 5px;
+      line-height: 1.5;
+    }
+
+    /* Multi-select */
+    .multi-select {
+      position: relative;
+    }
+
+    .multi-select-display {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      cursor: pointer;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      min-height: 46px;
+      transition: all var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .multi-select-display:hover {
+      border-color: #ccc;
+    }
+
+    .multi-select-display.open {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px var(--primary-glow), var(--shadow-sm);
+    }
+
+    .multi-select-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      background: #e8e4f0;
+      color: var(--primary-dark);
+      border-radius: 20px;
+      font-size: 12.5px;
+      font-weight: 500;
+      animation: chipIn 0.2s ease-out;
+    }
+
+    @keyframes chipIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8)
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1)
+      }
+    }
+
+    .multi-select-chip .chip-remove {
+      cursor: pointer;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      line-height: 1;
+      transition: all var(--transition);
+    }
+
+    .multi-select-chip .chip-remove:hover {
+      background: rgba(200, 0, 0, 0.2);
+      color: #c00;
+    }
+
+    .multi-select-placeholder {
+      color: #aca8a0;
+      font-size: 14px;
+    }
+
+    .multi-select-arrow {
+      margin-left: auto;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--transition);
+      flex-shrink: 0;
+    }
+
+    .multi-select-display.open .multi-select-arrow {
+      transform: rotate(180deg);
+    }
+
+    .multi-select-dropdown {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      background: var(--card);
+      border: 1.5px solid var(--border-focus);
+      border-radius: var(--radius);
+      max-height: 240px;
+      overflow-y: auto;
+      z-index: 100;
+      display: none;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .multi-select-dropdown.open {
+      display: block;
+    }
+
+    .multi-select-option {
+      padding: 11px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: background var(--transition);
+      font-size: 13.5px;
+      border-bottom: 1px solid #edebe7;
+    }
+
+    .multi-select-option:last-child {
+      border-bottom: none;
+    }
+
+    .multi-select-option:hover {
+      background: #f0eef5;
+    }
+
+    .multi-select-option input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* Price Summary */
+    .price-summary {
+      background: linear-gradient(135deg, #0a1f3f, #132e5e);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-bottom: 18px;
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(19, 46, 94, 0.3);
+    }
+
+    .price-summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .price-summary-row:last-child {
+      border-bottom: none;
+    }
+
+    .price-summary-label {
+      font-size: 13px;
+      opacity: 0.85;
+    }
+
+    .price-summary-value {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .price-summary-value.highlight {
+      font-size: 22px;
+      color: #d4af37;
+    }
+
+    /* Submit */
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, #132e5e, #1a3d7a);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 15.5px;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      transition: all var(--transition);
+      box-shadow: 0 4px 16px rgba(19, 46, 94, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(19, 46, 94, 0.4);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    /* Floating QR */
+    .floating-qrcode {
+      position: fixed;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .floating-qrcode-thumb {
+      width: 52px;
+      height: 52px;
+      border-radius: 10px;
+      border: 2px solid var(--primary);
+      cursor: pointer;
+      object-fit: cover;
+      background: #fff;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+      transition: transform var(--transition);
+    }
+
+    .floating-qrcode-thumb:hover {
+      transform: scale(1.1);
+    }
+
+    .floating-qrcode-label {
+      font-size: 10px;
+      color: var(--primary-dark);
+      font-weight: 600;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2px 6px;
+      border-radius: 4px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Modals */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      max-width: 480px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+      animation: modalIn 0.25s ease-out;
+    }
+
+    @keyframes modalIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, #132e5e, #1a3d7a);
+      color: #fff;
+      padding: 20px 22px;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    .modal-header h2 {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .modal-close {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+      line-height: 1;
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.35);
+      transform: rotate(90deg);
+    }
+
+    .modal-body {
+      padding: 22px;
+      color: #333;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .modal-body h1,
+    .modal-body h2,
+    .modal-body h3 {
+      margin: 10px 0 6px;
+      color: #1a1a2e;
+    }
+
+    .modal-body img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    /* Quill editor output compatibility */
+    .modal-body .ql-align-center {
+      text-align: center;
+    }
+
+    .modal-body .ql-align-right {
+      text-align: right;
+    }
+
+    .modal-body .ql-align-justify {
+      text-align: justify;
+    }
+
+    .modal-body .ql-indent-1 {
+      padding-left: 3em;
+    }
+
+    .modal-body .ql-indent-2 {
+      padding-left: 6em;
+    }
+
+    .modal-body .ql-indent-3 {
+      padding-left: 9em;
+    }
+
+    /* Valuation Modal */
+    .val-section {
+      margin-bottom: 18px;
+    }
+
+    .val-section-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .val-price {
+      background: #f4f3f0;
+      border-radius: var(--radius);
+      padding: 16px;
+      text-align: center;
+      border: 1px dashed var(--border);
+    }
+
+    .val-price-amount {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .val-notice {
+      background: #f7f3e8;
+      padding: 14px;
+      border-radius: var(--radius);
+      color: #8a7340;
+      font-size: 13px;
+      line-height: 1.7;
+      border-left: 4px solid var(--accent);
+    }
+
+    .val-qr {
+      text-align: center;
+      margin: 16px 0;
+    }
+
+    .val-qr img {
+      max-width: 180px;
+      border-radius: var(--radius);
+      border: 2px solid var(--border);
+      padding: 8px;
+      background: #fff;
+    }
+
+    .val-copy-btn {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, #132e5e, #1a3d7a);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .val-copy-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(19, 46, 94, 0.3);
+    }
+
+    /* Transaction grid */
+    .tx-section {
+      margin-bottom: 20px;
+    }
+
+    .tx-section-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #d4c8a8;
+    }
+
+    .tx-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .tx-grid img {
+      width: 100%;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform var(--transition);
+      border: 1px solid #eee;
+    }
+
+    .tx-grid img:hover {
+      transform: scale(1.03);
+    }
+
+    /* Image preview */
+    .img-preview-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .img-preview-overlay.active {
+      display: flex;
+    }
+
+    .img-preview-overlay img {
+      max-width: 95%;
+      max-height: 95vh;
+      border-radius: 8px;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 8px 30px;
+      }
+
+      .header {
+        padding: 28px 12px 22px;
+      }
+
+      .title {
+        font-size: 22px;
+      }
+
+      .logo-wrapper {
+        width: 64px;
+        height: 64px;
+      }
+
+      .logo-img {
+        width: 58px;
+        height: 58px;
+      }
+
+      .floating-qrcode {
+        right: 6px;
+      }
+
+      .floating-qrcode-thumb {
+        width: 44px;
+        height: 44px;
+      }
+
+      .modal-card {
+        max-width: 100%;
+        border-radius: 12px;
+      }
+
+      .tx-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="header">
+      <div class="header-bg"></div>
+      <div class="header-content">
+        <span class="watermark">北辰商行</span>
+        <div class="logo-wrapper">
+          <img class="logo-img" src="images/logo.svg" alt="北辰商行" onerror="this.style.display='none'">
+        </div>
+        <h1 class="title">三角洲租号估价表</h1>
+        <p class="subtitle">快速估价 · 安全交易</p>
+      </div>
+    </div>
+    <div id="form-render"></div>
+  </div>
+
+  <div class="floating-qrcode" id="floating-qrcode" style="display:none">
+    <img class="floating-qrcode-thumb" src="images/qrcode_floating.jpeg" alt="上架群" onclick="openQrcodeModal()">
+    <span class="floating-qrcode-label">上架群</span>
+  </div>
+
+  <div class="modal-overlay" id="qrcode-modal-overlay">
+    <div class="modal-card" style="max-width:320px;text-align:center" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2>上架群二维码</h2><button class="modal-close" onclick="closeQrcodeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <img id="qrcode-modal-img" src="images/qrcode_floating.jpeg" style="max-width:100%;border-radius:8px">
+        <p style="margin-top:10px;color:#666;font-size:13px">扫码加入上架群</p>
+        <button class="val-copy-btn" style="margin-top:10px" onclick="closeQrcodeModal()">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="notice-modal-overlay">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2>上架须知</h2><button class="modal-close" onclick="closeNoticeModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="notice-modal-body"></div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="transaction-modal-overlay">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2>成交记录</h2><button class="modal-close" onclick="closeTransactionModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="transaction-modal-body"></div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="aboutus-modal-overlay">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2>关于我们</h2><button class="modal-close" onclick="closeAboutUsModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="aboutus-modal-body"></div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="val-modal-overlay">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2>估价结果</h2><button class="modal-close" onclick="closeValModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="val-section">
+          <div class="val-section-title">📋 上架价格参考</div>
+          <div class="val-price">
+            <div style="font-size:13px;color:#666;margin-bottom:4px">建议日租金（元/天）</div>
+            <div class="val-price-amount" id="val-rental">--</div>
+          </div>
+        </div>
+        <div class="val-notice" id="val-instruction"></div>
+        <div class="val-qr">
+          <img src="images/qrcode_modal.jpg" alt="联系客服" onerror="this.style.display='none'">
+          <p style="margin-top:6px;color:#666;font-size:12px">扫码联系客服上架</p>
+        </div>
+        <button class="val-copy-btn" onclick="copyFromModal()">📋 复制估价信息</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="img-preview-overlay" id="img-preview-overlay" onclick="closeImagePreview()">
+    <img id="img-preview-img" src="" alt="预览">
+  </div>
+
+  <script>
+    var FORM_CONFIG = { "initial_ratio": 50, "float_amount": 1, "announcement_text": "温馨提示：认准北辰商行上架Q群管理员，私聊出/租均为骗子", "announcement_enabled": 1, "qrcode_url": "/uploads/qrcode_1775721704145.jpeg", "listing_notice": "<h1 class=\"ql-align-center\"><span style=\"color: rgb(230, 0, 0);\">上架须知（号主必看）</span></h1><p>号主认真读好条约</p><p><br></p><p>否则出了问题商行概不负责</p><p><br></p><p>⚠️ 号主须知:</p><p><br></p><p>一、【信息核实】</p><p>如实填写纯币数量！（<span style=\"color: rgb(230, 0, 0);\">填少了扣除租金，多填写的部分算赠送</span>）。人脸非本人的不收！如打到一半跳人脸号主告知非本人人脸所造成的损耗自己承担！</p><p><br></p><p>二、【仓库问题】</p><p><br></p><p>上号前号主需要整理仓库</p><p>除了纯币外其他东西统一折算成哈弗币（号主自愿赠送除外）</p><p>固定道具价格：</p><p>六头：2r 六甲2r&nbsp;&nbsp;45格红包：2r</p><p>体验卡：4r一张&nbsp;&nbsp;红蛋：6r一组</p><p><br></p><p>三、【封号问题】</p><p><br></p><p>号主提前留存好截图超过数据不明确的不计入，打手打完后自行截图留存，结算双方数据扯皮，俱乐部只认证据，不听解释，永久封号押金不退全额补偿号主，护航踢不补时长，不扣押金，其余按天数*10扣除押金赔偿号主，账号出租中不退不换，有顶号行为打手可举报，一次由号主赔偿10米给打手，多次顶号不配合可终止租赁，正常结算后号主填下表发到群内打手核对，<span style=\"color: rgb(230, 0, 0);\">一经结算后，号主改账密取消登陆设备，所有后续异常封禁不予处理</span></p><p><br></p><p>四、【租客上号】</p><p><br></p><p>拉群后沟通上号时间，如果两次以上打手无法联系到号主则算作结单，消耗的哈弗币自己承担！</p><p><br></p><p>五、【私下交易】</p><p><br></p><p><span style=\"color: rgb(230, 0, 0);\">不可私加打手微信好友，一旦私加扣除所有租金</span>（不听理由，但凡打手发出截图次单不结算）</p><p><br></p><p>六、【结算方式】</p><p>商行要求打手必须在规定时间内打完</p><p>特殊情况号主和打手可协商！</p><p>打完或租期时间到了就可以结账了</p><p>（默认最低消耗10m/天）</p><p><span style=\"color: rgb(230, 0, 0);\">⚠️号主结算时扣除12%的总租金作为手续费</span></p><p>（不要觉得我们商行黑！去对比一下这个比例加手续费也比其他商行给的高！望周知！！！！）</p><p><br></p><p><br></p><p>此须知号主必看，忽略此须知所造成的所有后果和损失商行概不负责。</p><p>最终解释权归北辰商行所有.</p>", "about_us": "<h2>✅<strong>真实力:我们是</strong><strong style=\"color: rgb(230, 0, 0);\">线下实体</strong><strong>公司，拒绝“空手套白狼”，人跑得了，店跑不了，给你的资金上“双保险”。</strong></h2><h2>✅<strong>大数据:已累计服务</strong><strong style=\"color: rgb(230, 0, 0);\">30,000+</strong><strong>号主。能服务这么多人，靠的不是低价套路，而是实打实的诚信与口碑。</strong></h2><h2>✅<strong>硬售后:</strong><strong style=\"color: rgb(230, 0, 0);\">交易讲公正公平，过程全透明</strong><strong>。若有任何问题，我们负责到底，售后不扯皮，让你卖得明明白白。</strong></h2><h2><span style=\"color: rgb(230, 0, 0);\">哈弗换米认准北辰商行，省心又放心!欢迎新老朋友捧场!</span></h2><p><br></p>", "transaction_sections": [{ "id": 5, "title": "号主好评", "sort_order": 2, "created_at": "2026-04-04 15:42:24", "updated_at": "2026-04-04 15:42:24", "images": [{ "id": 3, "section_id": 5, "image_url": "images/zhage_tx1.png", "sort_order": 1, "created_at": "2026-04-27 01:33:04", "updated_at": "2026-04-27 01:33:04" }, { "id": 4, "section_id": 5, "image_url": "images/zhage_tx2.png", "sort_order": 2, "created_at": "2026-04-27 01:33:04", "updated_at": "2026-04-27 01:33:04" }, { "id": 5, "section_id": 5, "image_url": "images/zhage_tx3.png", "sort_order": 3, "created_at": "2026-04-27 01:33:04", "updated_at": "2026-04-27 01:33:04" }] }], "fields": [{ "id": 33, "name": "哈夫币纯币（单位M，1M=100W）", "type": "input", "affects_ratio": true, "allow_multiple": false, "ratio_min_limit": null, "ratio_max_limit": null, "remark": "温馨提示：纯币小于30M无法寄售租赁", "sort_order": 1, "ranges": [{ "id": 44, "field_id": 33, "range_min": 149, "range_max": 239, "ratio_param": 0.5, "created_at": "2026-04-27 01:37:36", "updated_at": "2026-04-27 01:37:36" }, { "id": 45, "field_id": 33, "range_min": 240, "range_max": 339, "ratio_param": 1, "created_at": "2026-04-27 01:38:08", "updated_at": "2026-04-27 01:38:08" }, { "id": 46, "field_id": 33, "range_min": 340, "range_max": 439, "ratio_param": 1.5, "created_at": "2026-04-27 01:38:22", "updated_at": "2026-04-27 01:38:22" }, { "id": 47, "field_id": 33, "range_min": 440, "range_max": 540, "ratio_param": 2.5, "created_at": "2026-04-27 01:38:36", "updated_at": "2026-04-27 01:38:36" }, { "id": 48, "field_id": 33, "range_min": 541, "range_max": 639, "ratio_param": 3.5, "created_at": "2026-04-27 01:39:04", "updated_at": "2026-04-27 01:39:04" }, { "id": 49, "field_id": 33, "range_min": 640, "range_max": 839, "ratio_param": 4, "created_at": "2026-04-27 01:39:19", "updated_at": "2026-04-27 01:39:19" }, { "id": 50, "field_id": 33, "range_min": 840, "range_max": 1149, "ratio_param": 5, "created_at": "2026-04-27 01:39:37", "updated_at": "2026-04-27 01:39:37" }, { "id": 43, "field_id": 33, "range_min": 1150, "range_max": 3000, "ratio_param": 6, "created_at": "2026-04-27 01:34:00", "updated_at": "2026-04-27 01:34:00" }] }, { "id": 36, "name": "上号方式", "type": "select", "affects_ratio": false, "allow_multiple": false, "ratio_min_limit": null, "ratio_max_limit": null, "remark": null, "sort_order": 1, "options": [{ "id": 11, "field_id": 36, "option_name": "QQ账号密码", "ratio_param": 0, "created_at": "2026-01-09 08:30:17", "updated_at": "2026-01-09 08:34:32" }, { "id": 12, "field_id": 36, "option_name": "QQ扫码", "ratio_param": 0, "created_at": "2026-01-09 08:30:27", "updated_at": "2026-01-09 08:30:27" }, { "id": 13, "field_id": 36, "option_name": "VX扫码", "ratio_param": 0, "created_at": "2026-01-09 08:30:36", "updated_at": "2026-01-09 08:30:36" }] }, { "id": 37, "name": "段位", "type": "select", "affects_ratio": false, "allow_multiple": false, "ratio_min_limit": null, "ratio_max_limit": null, "remark": null, "sort_order": 2, "options": [{ "id": 14, "field_id": 37, "option_name": "青铜", "ratio_param": 0, "created_at": "2026-01-09 08:38:56", "updated_at": "2026-01-09 08:38:56" }, { "id": 15, "field_id": 37, "option_name": "白银", "ratio_param": 0, "created_at": "2026-01-09 08:39:02", "updated_at": "2026-01-09 08:39:02" }, { "id": 16, "field_id": 37, "option_name": "黄金", "ratio_param": 0, "created_at": "2026-01-09 08:40:54", "updated_at": "2026-01-09 08:40:54" }, { "id": 17, "field_id": 37, "option_name": "铂金", "ratio_param": 0, "created_at": "2026-01-09 08:41:01", "updated_at": "2026-01-09 08:41:01" }, { "id": 27, "field_id": 37, "option_name": "钻石", "ratio_param": 0, "created_at": "2026-01-12 08:59:03", "updated_at": "2026-01-12 08:59:03" }, { "id": 28, "field_id": 37, "option_name": "黑鹰", "ratio_param": 0, "created_at": "2026-01-12 08:59:09", "updated_at": "2026-01-12 08:59:09" }, { "id": 29, "field_id": 37, "option_name": "三角洲巅峰", "ratio_param": 0, "created_at": "2026-01-12 08:59:15", "updated_at": "2026-01-12 08:59:15" }] }, { "id": 38, "name": "绝密KD", "type": "input", "affects_ratio": false, "allow_multiple": false, "ratio_min_limit": null, "ratio_max_limit": null, "remark": null, "sort_order": 3, "ranges": [] }, { "id": 39, "name": "等级", "type": "input", "affects_ratio": false, "allow_multiple": false, "ratio_min_limit": null, "ratio_max_limit": null, "remark": null, "sort_order": 5, "ranges": [] }, { "id": 40, "name": "3*3体验卡数量（张）", "type": "input", "affects_ratio": false, "allow_multiple": false, "ratio_min_limit": null, "ratio_max_limit": null, "remark": null, "sort_order": 6, "ranges": [] }, { "id": 41, "name": "保险格数", "type": "select", "affects_ratio": true, "allow_multiple": false, "ratio_min_limit": null, "ratio_max_limit": null, "remark": null, "sort_order": 7, "options": [{ "id": 18, "field_id": 41, "option_name": "4格", "ratio_param": 1, "created_at": "2026-01-09 08:44:03", "updated_at": "2026-01-12 09:22:03" }, { "id": 19, "field_id": 41, "option_name": "6格", "ratio_param": 0, "created_at": "2026-01-09 08:44:18", "updated_at": "2026-01-09 08:44:18" }, { "id": 20, "field_id": 41, "option_name": "9格", "ratio_param": -1, "created_at": "2026-01-09 08:44:24", "updated_at": "2026-01-12 09:21:52" }] }, { "id": 42, "name": "体力（训练中心）", "type": "select", "affects_ratio": true, "allow_multiple": false, "ratio_min_limit": null, "ratio_max_limit": null, "remark": null, "sort_order": 8, "options": [{ "id": 30, "field_id": 42, "option_name": "1", "ratio_param": 1, "created_at": "2026-01-12 09:26:47", "updated_at": "2026-01-12 09:26:47" }, { "id": 31, "field_id": 42, "option_name": "2", "ratio_param": 1, "created_at": "2026-01-12 09:26:56", "updated_at": "2026-01-12 09:26:56" }, { "id": 32, "field_id": 42, "option_name": "3", "ratio_param": 1, "created_at": "2026-01-12 09:27:02", "updated_at": "2026-01-12 09:27:02" }, { "id": 33, "field_id": 42, "option_name": "4", "ratio_param": 0.5, "created_at": "2026-01-12 09:27:24", "updated_at": "2026-01-12 09:27:24" }, { "id": 34, "field_id": 42, "option_name": "5", "ratio_param": 0.5, "created_at": "2026-01-12 09:27:28", "updated_at": "2026-01-12 09:27:28" }, { "id": 35, "field_id": 42, "option_name": "6", "ratio_param": 0, "created_at": "2026-01-12 09:27:33", "updated_at": "2026-01-12 09:27:33" }, { "id": 36, "field_id": 42, "option_name": "7", "ratio_param": -0.5, "created_at": "2026-01-12 09:27:39", "updated_at": "2026-01-12 09:28:37" }] }, { "id": 43, "name": "负重（靶场等级）", "type": "select", "affects_ratio": true, "allow_multiple": false, "ratio_min_limit": null, "ratio_max_limit": null, "remark": null, "sort_order": 9, "options": [{ "id": 37, "field_id": 43, "option_name": "1", "ratio_param": 1, "created_at": "2026-01-12 09:29:01", "updated_at": "2026-01-12 09:29:01" }, { "id": 38, "field_id": 43, "option_name": "2", "ratio_param": 1, "created_at": "2026-01-12 09:29:06", "updated_at": "2026-01-12 09:29:06" }, { "id": 39, "field_id": 43, "option_name": "3", "ratio_param": 1, "created_at": "2026-01-12 09:29:09", "updated_at": "2026-01-12 09:29:09" }, { "id": 40, "field_id": 43, "option_name": "4", "ratio_param": 0.5, "created_at": "2026-01-12 09:29:13", "updated_at": "2026-01-12 09:29:13" }, { "id": 41, "field_id": 43, "option_name": "5", "ratio_param": 0.5, "created_at": "2026-01-12 09:29:18", "updated_at": "2026-01-12 09:29:18" }, { "id": 42, "field_id": 43, "option_name": "6", "ratio_param": 0, "created_at": "2026-01-12 09:29:22", "updated_at": "2026-01-12 09:29:22" }, { "id": 43, "field_id": 43, "option_name": "7", "ratio_param": -0.5, "created_at": "2026-01-12 09:29:26", "updated_at": "2026-01-12 09:29:26" }] }, { "id": 44, "name": "AWM子弹数量", "type": "input", "affects_ratio": false, "allow_multiple": false, "ratio_min_limit": null, "ratio_max_limit": null, "remark": "道具价格为：AW0.8W一发，头2甲2 咖啡豆4r 金全装包为5r AW全装包10r 其余卡或甲修等宜折算哈夫币的统一按比列折算", "sort_order": 10, "ranges": [] }, { "id": 45, "name": "6头数量", "type": "input", "affects_ratio": false, "allow_multiple": false, "ratio_min_limit": null, "ratio_max_limit": null, "remark": null, "sort_order": 11, "ranges": [] }, { "id": 46, "name": "6甲数量", "type": "input", "affects_ratio": true, "allow_multiple": false, "ratio_min_limit": null, "ratio_max_limit": null, "remark": null, "sort_order": 11, "ranges": [] }, { "id": 47, "name": "刀皮（有的话回收比例-1）", "type": "select", "affects_ratio": true, "allow_multiple": true, "ratio_min_limit": -1, "ratio_max_limit": null, "remark": null, "sort_order": 12, "options": [{ "id": 21, "field_id": 47, "option_name": "龙牙", "ratio_param": -1, "created_at": "2026-01-09 09:09:58", "updated_at": "2026-01-12 09:30:21" }, { "id": 22, "field_id": 47, "option_name": "信条", "ratio_param": -1, "created_at": "2026-01-09 09:10:04", "updated_at": "2026-01-12 09:32:09" }, { "id": 44, "field_id": 47, "option_name": "怜悯", "ratio_param": -1, "created_at": "2026-01-12 09:30:28", "updated_at": "2026-01-12 09:30:28" }, { "id": 45, "field_id": 47, "option_name": "赤枭", "ratio_param": -1, "created_at": "2026-01-12 09:31:51", "updated_at": "2026-01-12 09:31:51" }, { "id": 46, "field_id": 47, "option_name": "北极星", "ratio_param": -1, "created_at": "2026-01-12 09:32:02", "updated_at": "2026-01-12 09:32:02" }, { "id": 47, "field_id": 47, "option_name": "黑海", "ratio_param": -1, "created_at": "2026-01-12 09:32:32", "updated_at": "2026-01-12 09:32:32" }, { "id": 48, "field_id": 47, "option_name": "影锋", "ratio_param": -1, "created_at": "2026-01-12 09:32:41", "updated_at": "2026-01-12 10:07:49" }, { "id": 55, "field_id": 47, "option_name": "暗星", "ratio_param": -1, "created_at": "2026-02-04 01:28:12", "updated_at": "2026-02-04 01:28:12" }, { "id": 58, "field_id": 47, "option_name": "坠星者", "ratio_param": -1, "created_at": "2026-04-16 08:02:44", "updated_at": "2026-04-16 08:02:54" }, { "id": 59, "field_id": 47, "option_name": "电锯", "ratio_param": 0, "created_at": "2026-04-16 08:03:02", "updated_at": "2026-04-16 08:03:02" }, { "id": 60, "field_id": 47, "option_name": "处刑者", "ratio_param": 0, "created_at": "2026-04-16 08:03:09", "updated_at": "2026-04-16 08:03:09" }] }, { "id": 48, "name": "干员红皮", "type": "select", "affects_ratio": false, "allow_multiple": true, "ratio_min_limit": null, "ratio_max_limit": null, "remark": null, "sort_order": 13, "options": [{ "id": 23, "field_id": 48, "option_name": "吴彦祖", "ratio_param": 0, "created_at": "2026-01-09 09:11:11", "updated_at": "2026-01-15 13:42:12" }, { "id": 49, "field_id": 48, "option_name": "蚀金玫瑰", "ratio_param": 0, "created_at": "2026-01-15 13:43:09", "updated_at": "2026-01-15 13:43:09" }, { "id": 50, "field_id": 48, "option_name": "午夜邮差", "ratio_param": 0, "created_at": "2026-01-15 13:43:26", "updated_at": "2026-01-15 13:43:26" }, { "id": 51, "field_id": 48, "option_name": "天际线", "ratio_param": 0, "created_at": "2026-01-15 13:43:34", "updated_at": "2026-01-15 13:43:34" }, { "id": 52, "field_id": 48, "option_name": "维什戴尔", "ratio_param": 0, "created_at": "2026-01-15 13:44:05", "updated_at": "2026-01-15 13:44:05" }, { "id": 53, "field_id": 48, "option_name": "水墨云图", "ratio_param": 0, "created_at": "2026-01-15 13:44:21", "updated_at": "2026-01-15 13:44:21" }, { "id": 56, "field_id": 48, "option_name": "凌霄戍卫", "ratio_param": 0, "created_at": "2026-02-24 06:27:33", "updated_at": "2026-02-24 06:27:33" }] }, { "id": 49, "name": "武器皮肤", "type": "select", "affects_ratio": false, "allow_multiple": true, "ratio_min_limit": -1, "ratio_max_limit": null, "remark": null, "sort_order": 14, "options": [{ "id": 24, "field_id": 49, "option_name": "AS Val悬赏令", "ratio_param": 0, "created_at": "2026-01-09 09:11:51", "updated_at": "2026-01-09 09:11:51" }, { "id": 25, "field_id": 49, "option_name": "M7棱镜攻势", "ratio_param": 0, "created_at": "2026-01-09 09:12:09", "updated_at": "2026-01-09 09:12:09" }, { "id": 57, "field_id": 49, "option_name": "kc17创物纪元", "ratio_param": 0, "created_at": "2026-04-16 08:02:04", "updated_at": "2026-04-16 08:02:31" }] }, { "id": 50, "name": "押金（租客缴纳，封号赔偿用，号主必填）", "type": "input", "affects_ratio": false, "allow_multiple": false, "ratio_min_limit": null, "ratio_max_limit": null, "remark": "不清楚询问客服合适押金，押金为租客缴纳，用于赔偿毁号或封号等", "sort_order": 15, "ranges": [] }, { "id": 51, "name": "号主在线时间（需配合人脸验证！）", "type": "input", "affects_ratio": false, "allow_multiple": false, "ratio_min_limit": null, "ratio_max_limit": null, "remark": null, "sort_order": 16, "ranges": [] }, { "id": 52, "name": "封禁记录（没有可不填写）", "type": "input", "affects_ratio": false, "allow_multiple": false, "ratio_min_limit": null, "ratio_max_limit": null, "remark": null, "sort_order": 17, "ranges": [] }, { "id": 35, "name": "租期（天）", "type": "input", "affects_ratio": false, "allow_multiple": false, "ratio_min_limit": null, "ratio_max_limit": null, "remark": "PS：例如100M的号，最多只会被出租10天，超过租期按照出租金额全款结账！正常租期单位10M=1天", "sort_order": 18, "ranges": [] }, { "id": 53, "name": "联系号码", "type": "input", "affects_ratio": false, "allow_multiple": false, "ratio_min_limit": null, "ratio_max_limit": null, "remark": "必须填写号主，方便联系上下号", "sort_order": 19, "ranges": [] }], "combo_rules": [{ "id": 72, "insurance_field_id": 41, "insurance_value": "4格", "stamina_field_id": 42, "stamina_value": "3", "weight_field_id": 43, "weight_value": "3", "adjusted_ratio": 48, "remark": "433", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:14:34" }, { "id": 71, "insurance_field_id": 41, "insurance_value": "4格", "stamina_field_id": 42, "stamina_value": "4", "weight_field_id": 43, "weight_value": "2", "adjusted_ratio": 47.5, "remark": "442", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:14:29" }, { "id": 70, "insurance_field_id": 41, "insurance_value": "4格", "stamina_field_id": 42, "stamina_value": "4", "weight_field_id": 43, "weight_value": "3", "adjusted_ratio": 47, "remark": "443", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:14:22" }, { "id": 69, "insurance_field_id": 41, "insurance_value": "4格", "stamina_field_id": 42, "stamina_value": "4", "weight_field_id": 43, "weight_value": "4", "adjusted_ratio": 46.5, "remark": "444", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:14:17" }, { "id": 68, "insurance_field_id": 41, "insurance_value": "4格", "stamina_field_id": 42, "stamina_value": "4", "weight_field_id": 43, "weight_value": "5", "adjusted_ratio": 46, "remark": "445", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:14:06" }, { "id": 67, "insurance_field_id": 41, "insurance_value": "4格", "stamina_field_id": 42, "stamina_value": "4", "weight_field_id": 43, "weight_value": "6", "adjusted_ratio": 46, "remark": "446", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:14:00" }, { "id": 66, "insurance_field_id": 41, "insurance_value": "4格", "stamina_field_id": 42, "stamina_value": "4", "weight_field_id": 43, "weight_value": "7", "adjusted_ratio": 45.5, "remark": "447", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:13:55" }, { "id": 65, "insurance_field_id": 41, "insurance_value": "4格", "stamina_field_id": 42, "stamina_value": "5", "weight_field_id": 43, "weight_value": "3", "adjusted_ratio": 46.5, "remark": "453", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:13:49" }, { "id": 64, "insurance_field_id": 41, "insurance_value": "4格", "stamina_field_id": 42, "stamina_value": "5", "weight_field_id": 43, "weight_value": "4", "adjusted_ratio": 46, "remark": "454", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:13:43" }, { "id": 63, "insurance_field_id": 41, "insurance_value": "4格", "stamina_field_id": 42, "stamina_value": "5", "weight_field_id": 43, "weight_value": "5", "adjusted_ratio": 46, "remark": "455", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:13:37" }, { "id": 62, "insurance_field_id": 41, "insurance_value": "4格", "stamina_field_id": 42, "stamina_value": "5", "weight_field_id": 43, "weight_value": "6", "adjusted_ratio": 45.5, "remark": "456", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:13:31" }, { "id": 61, "insurance_field_id": 41, "insurance_value": "4格", "stamina_field_id": 42, "stamina_value": "5", "weight_field_id": 43, "weight_value": "7", "adjusted_ratio": 45, "remark": "457", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:13:25" }, { "id": 60, "insurance_field_id": 41, "insurance_value": "4格", "stamina_field_id": 42, "stamina_value": "6", "weight_field_id": 43, "weight_value": "3", "adjusted_ratio": 45.5, "remark": "463", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:13:18" }, { "id": 59, "insurance_field_id": 41, "insurance_value": "4格", "stamina_field_id": 42, "stamina_value": "6", "weight_field_id": 43, "weight_value": "4", "adjusted_ratio": 45.5, "remark": "464", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:13:12" }, { "id": 58, "insurance_field_id": 41, "insurance_value": "4格", "stamina_field_id": 42, "stamina_value": "6", "weight_field_id": 43, "weight_value": "5", "adjusted_ratio": 44, "remark": "465", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:13:06" }, { "id": 57, "insurance_field_id": 41, "insurance_value": "4格", "stamina_field_id": 42, "stamina_value": "6", "weight_field_id": 43, "weight_value": "6", "adjusted_ratio": 44.5, "remark": "466", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:13:00" }, { "id": 56, "insurance_field_id": 41, "insurance_value": "4格", "stamina_field_id": 42, "stamina_value": "6", "weight_field_id": 43, "weight_value": "7", "adjusted_ratio": 44.5, "remark": "467", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:12:54" }, { "id": 55, "insurance_field_id": 41, "insurance_value": "4格", "stamina_field_id": 42, "stamina_value": "7", "weight_field_id": 43, "weight_value": "3", "adjusted_ratio": 45, "remark": "473", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:12:48" }, { "id": 54, "insurance_field_id": 41, "insurance_value": "4格", "stamina_field_id": 42, "stamina_value": "7", "weight_field_id": 43, "weight_value": "4", "adjusted_ratio": 44.5, "remark": "474", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:12:42" }, { "id": 53, "insurance_field_id": 41, "insurance_value": "4格", "stamina_field_id": 42, "stamina_value": "7", "weight_field_id": 43, "weight_value": "5", "adjusted_ratio": 44, "remark": "475", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:12:36" }, { "id": 52, "insurance_field_id": 41, "insurance_value": "4格", "stamina_field_id": 42, "stamina_value": "7", "weight_field_id": 43, "weight_value": "6", "adjusted_ratio": 44, "remark": "476", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:12:30" }, { "id": 51, "insurance_field_id": 41, "insurance_value": "4格", "stamina_field_id": 42, "stamina_value": "7", "weight_field_id": 43, "weight_value": "7", "adjusted_ratio": 43.5, "remark": "477", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:12:23" }, { "id": 50, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "3", "weight_field_id": 43, "weight_value": "3", "adjusted_ratio": 43.5, "remark": "633", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:12:17" }, { "id": 49, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "3", "weight_field_id": 43, "weight_value": "4", "adjusted_ratio": 44, "remark": "634", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:12:10" }, { "id": 48, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "3", "weight_field_id": 43, "weight_value": "5", "adjusted_ratio": 43.5, "remark": "635", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:12:00" }, { "id": 47, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "3", "weight_field_id": 43, "weight_value": "6", "adjusted_ratio": 43, "remark": "636", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:11:51" }, { "id": 46, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "3", "weight_field_id": 43, "weight_value": "7", "adjusted_ratio": 42.5, "remark": "637", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:11:45" }, { "id": 45, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "4", "weight_field_id": 43, "weight_value": "3", "adjusted_ratio": 43.5, "remark": "643", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:11:39" }, { "id": 44, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "4", "weight_field_id": 43, "weight_value": "4", "adjusted_ratio": 43, "remark": "644", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:11:33" }, { "id": 43, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "4", "weight_field_id": 43, "weight_value": "5", "adjusted_ratio": 43, "remark": "645", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:11:20" }, { "id": 42, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "4", "weight_field_id": 43, "weight_value": "6", "adjusted_ratio": 42.5, "remark": "646", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:11:14" }, { "id": 41, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "4", "weight_field_id": 43, "weight_value": "7", "adjusted_ratio": 42.5, "remark": "647", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:11:08" }, { "id": 40, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "5", "weight_field_id": 43, "weight_value": "3", "adjusted_ratio": 43, "remark": "653", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:11:02" }, { "id": 39, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "5", "weight_field_id": 43, "weight_value": "4", "adjusted_ratio": 42.5, "remark": "654", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:10:56" }, { "id": 38, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "5", "weight_field_id": 43, "weight_value": "5", "adjusted_ratio": 42.5, "remark": "655", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:10:50" }, { "id": 37, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "5", "weight_field_id": 43, "weight_value": "6", "adjusted_ratio": 42, "remark": "656", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:10:43" }, { "id": 36, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "5", "weight_field_id": 43, "weight_value": "7", "adjusted_ratio": 41.5, "remark": "657", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:10:37" }, { "id": 35, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "6", "weight_field_id": 43, "weight_value": "3", "adjusted_ratio": 42.5, "remark": "663", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:10:29" }, { "id": 34, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "6", "weight_field_id": 43, "weight_value": "4", "adjusted_ratio": 42, "remark": "664", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:10:21" }, { "id": 33, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "6", "weight_field_id": 43, "weight_value": "5", "adjusted_ratio": 42, "remark": "665", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:10:15" }, { "id": 32, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "6", "weight_field_id": 43, "weight_value": "6", "adjusted_ratio": 41.5, "remark": "666", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:10:10" }, { "id": 31, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "6", "weight_field_id": 43, "weight_value": "7", "adjusted_ratio": 41.5, "remark": "667", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:10:04" }, { "id": 30, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "7", "weight_field_id": 43, "weight_value": "3", "adjusted_ratio": 42.5, "remark": "673", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:09:57" }, { "id": 29, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "7", "weight_field_id": 43, "weight_value": "4", "adjusted_ratio": 42, "remark": "674", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:09:50" }, { "id": 28, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "7", "weight_field_id": 43, "weight_value": "5", "adjusted_ratio": 41.5, "remark": "675", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:09:44" }, { "id": 27, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "7", "weight_field_id": 43, "weight_value": "6", "adjusted_ratio": 41.5, "remark": "676", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:09:36" }, { "id": 26, "insurance_field_id": 41, "insurance_value": "6格", "stamina_field_id": 42, "stamina_value": "7", "weight_field_id": 43, "weight_value": "7", "adjusted_ratio": 41, "remark": "677", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:09:30" }, { "id": 25, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "3", "weight_field_id": 43, "weight_value": "3", "adjusted_ratio": 40, "remark": "933", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:09:24" }, { "id": 24, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "3", "weight_field_id": 43, "weight_value": "4", "adjusted_ratio": 39.5, "remark": "934", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:09:18" }, { "id": 23, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "3", "weight_field_id": 43, "weight_value": "5", "adjusted_ratio": 39.5, "remark": "935", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:09:11" }, { "id": 22, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "3", "weight_field_id": 43, "weight_value": "6", "adjusted_ratio": 39, "remark": "936", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:09:05" }, { "id": 21, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "3", "weight_field_id": 43, "weight_value": "7", "adjusted_ratio": 38.5, "remark": "937", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:08:59" }, { "id": 20, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "4", "weight_field_id": 43, "weight_value": "3", "adjusted_ratio": 39.5, "remark": "943", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:08:53" }, { "id": 19, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "4", "weight_field_id": 43, "weight_value": "4", "adjusted_ratio": 39, "remark": "944", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:08:47" }, { "id": 18, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "4", "weight_field_id": 43, "weight_value": "5", "adjusted_ratio": 38.5, "remark": "945", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:08:40" }, { "id": 17, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "4", "weight_field_id": 43, "weight_value": "6", "adjusted_ratio": 38.5, "remark": "946", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:08:33" }, { "id": 16, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "4", "weight_field_id": 43, "weight_value": "7", "adjusted_ratio": 38.5, "remark": "947", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:08:26" }, { "id": 15, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "5", "weight_field_id": 43, "weight_value": "3", "adjusted_ratio": 39, "remark": "953", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:08:19" }, { "id": 14, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "5", "weight_field_id": 43, "weight_value": "4", "adjusted_ratio": 38.5, "remark": "954", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:08:11" }, { "id": 13, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "5", "weight_field_id": 43, "weight_value": "5", "adjusted_ratio": 38, "remark": "955", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:08:03" }, { "id": 12, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "5", "weight_field_id": 43, "weight_value": "6", "adjusted_ratio": 38, "remark": "956", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:07:57" }, { "id": 11, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "5", "weight_field_id": 43, "weight_value": "7", "adjusted_ratio": 37.5, "remark": "957", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:07:49" }, { "id": 10, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "6", "weight_field_id": 43, "weight_value": "3", "adjusted_ratio": 39, "remark": "963", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:07:38" }, { "id": 9, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "6", "weight_field_id": 43, "weight_value": "4", "adjusted_ratio": 38.5, "remark": "964", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:07:29" }, { "id": 8, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "6", "weight_field_id": 43, "weight_value": "5", "adjusted_ratio": 38, "remark": "965", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:07:21" }, { "id": 7, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "6", "weight_field_id": 43, "weight_value": "6", "adjusted_ratio": 37.5, "remark": "966", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:07:13" }, { "id": 6, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "6", "weight_field_id": 43, "weight_value": "7", "adjusted_ratio": 37.5, "remark": "967", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:07:03" }, { "id": 5, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "7", "weight_field_id": 43, "weight_value": "3", "adjusted_ratio": 38.5, "remark": "973", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:06:52" }, { "id": 4, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "7", "weight_field_id": 43, "weight_value": "4", "adjusted_ratio": 38, "remark": "974", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:06:41" }, { "id": 3, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "7", "weight_field_id": 43, "weight_value": "5", "adjusted_ratio": 37.5, "remark": "975", "created_at": "2026-01-16 05:42:27", "updated_at": "2026-05-19 06:06:34" }, { "id": 2, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "7", "weight_field_id": 43, "weight_value": "6", "adjusted_ratio": 37.5, "remark": "976", "created_at": "2026-01-16 05:29:28", "updated_at": "2026-05-19 06:06:25" }, { "id": 1, "insurance_field_id": 41, "insurance_value": "9格", "stamina_field_id": 42, "stamina_value": "7", "weight_field_id": 43, "weight_value": "7", "adjusted_ratio": 37, "remark": "977", "created_at": "2026-01-16 04:48:53", "updated_at": "2026-05-19 06:06:14" }] };
+
+    function $(id) { return document.getElementById(id); }
+    function qs(sel, ctx) { return (ctx || document).querySelector(sel); }
+    function qsa(sel, ctx) { return (ctx || document).querySelectorAll(sel); }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      renderForm();
+      initExtras();
+    });
+
+    function renderForm() {
+      var cfg = FORM_CONFIG;
+      var html = '';
+
+      if (cfg.announcement_enabled && cfg.announcement_text) {
+        html += '<div class="announcement"><span class="announcement-icon">📢</span><div class="announcement-scroll"><span class="announcement-text">' + cfg.announcement_text + '</span></div></div>';
+      }
+
+      var hasBtns = false;
+      var btnHtml = '<div class="action-row">';
+      if (cfg.listing_notice && cfg.listing_notice.trim() && cfg.listing_notice !== '<p><br></p>') {
+        btnHtml += '<button class="action-btn" onclick="openNoticeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>上架须知</button>';
+        hasBtns = true;
+      }
+      if (cfg.transaction_sections && cfg.transaction_sections.length > 0) {
+        btnHtml += '<button class="action-btn" onclick="openTransactionModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>成交记录</button>';
+        hasBtns = true;
+      }
+      if (cfg.about_us && cfg.about_us.trim() && cfg.about_us !== '<p><br></p>') {
+        btnHtml += '<button class="action-btn" onclick="openAboutUsModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>关于我们</button>';
+        hasBtns = true;
+      }
+      btnHtml += '</div>';
+      if (hasBtns) html += btnHtml;
+
+      cfg.fields.forEach(function (f) {
+        html += '<div class="form-group">';
+        var isReq = f.name.indexOf('纯币') > -1 || f.name.indexOf('联系') > -1;
+        html += '<label class="form-label"><span class="label-icon' + (isReq ? ' required' : '') + '"></span>' + f.name + '</label>';
+
+        if (f.type === 'select') {
+          if (f.allow_multiple) {
+            html += renderMultiSelect(f);
+          } else {
+            html += '<select class="form-select" data-fid="' + f.id + '" data-fname="' + f.name + '" data-ratio="' + f.affects_ratio + '" onchange="onFieldChange()"><option value="">请选择' + f.name + '</option>';
+            f.options.forEach(function (o) {
+              html += '<option value="' + o.option_name + '" data-ratio="' + o.ratio_param + '">' + o.option_name + '</option>';
+            });
+            html += '</select>';
+          }
+        } else if (f.type === 'input') {
+          var isR = f.name.indexOf('租期') > -1;
+          html += '<input type="' + (isR ? 'text' : 'number') + '" class="form-input" data-fid="' + f.id + '" data-fname="' + f.name + '" data-ratio="' + f.affects_ratio + '" placeholder="' + (isR ? '自动计算' : '请输入' + f.name) + '"' + (isR ? ' readonly' : '') + ' oninput="onFieldChange()">';
+        }
+        if (f.remark) html += '<div class="remark-text">' + f.remark + '</div>';
+        html += '</div>';
+      });
+
+      html += '<div class="price-summary"><div class="price-summary-row"><span class="price-summary-label">回收比例</span><span class="price-summary-value" id="recovery-ratio">50.00</span></div><div class="price-summary-row"><span class="price-summary-label">预估日租金（元/天）</span><span class="price-summary-value highlight" id="recovery-rental">--</span></div></div>';
+      html += '<button class="submit-btn" onclick="onSubmit()">📊 查看估价结果</button>';
+
+      $('form-render').innerHTML = html;
+      initMultiSelects();
+    }
+
+    function renderMultiSelect(f) {
+      var h = '<div class="multi-select" data-fid="' + f.id + '" data-fname="' + f.name + '" data-ratio="' + f.affects_ratio + '">';
+      h += '<div class="multi-select-display" onclick="toggleMultiDropdown(this)"><span class="multi-select-placeholder">请选择' + f.name + '</span><span class="multi-select-arrow"><svg width="12" height="12" viewBox="0 0 12 12"><path fill="#999" d="M6 9L1 4h10z"/></svg></span></div>';
+      h += '<div class="multi-select-dropdown">';
+      f.options.forEach(function (o) {
+        h += '<div class="multi-select-option"><input type="checkbox" id="opt-' + f.id + '-' + o.id + '" value="' + o.option_name + '" data-ratio="' + o.ratio_param + '" onchange="onMultiSelectChange(this)"><label for="opt-' + f.id + '-' + o.id + '">' + o.option_name + '</label></div>';
+      });
+      h += '</div></div>';
+      return h;
+    }
+
+    function initMultiSelects() {
+      document.addEventListener('click', function (e) {
+        qsa('.multi-select-display.open').forEach(function (d) {
+          var wrap = d.closest('.multi-select');
+          if (wrap && !wrap.contains(e.target)) {
+            d.classList.remove('open');
+            qs('.multi-select-dropdown', wrap).classList.remove('open');
+          }
+        });
+      });
+    }
+
+    function toggleMultiDropdown(display) {
+      var wrap = display.closest('.multi-select');
+      var dd = qs('.multi-select-dropdown', wrap);
+      var isOpen = display.classList.toggle('open');
+      dd.classList.toggle('open', isOpen);
+    }
+
+    function onMultiSelectChange(cb) {
+      updateMultiDisplay(cb.closest('.multi-select'));
+      onFieldChange();
+    }
+
+    function updateMultiDisplay(wrap) {
+      var display = qs('.multi-select-display', wrap);
+      var checked = qsa('input:checked', wrap);
+      var arrow = qs('.multi-select-arrow', display);
+      qsa('.multi-select-chip', display).forEach(function (c) { c.remove(); });
+      var placeholder = qs('.multi-select-placeholder', display);
+
+      if (checked.length === 0) {
+        if (!placeholder) {
+          var ph = document.createElement('span');
+          ph.className = 'multi-select-placeholder';
+          ph.textContent = '请选择' + (wrap.dataset.fname || '');
+          display.insertBefore(ph, arrow);
+        }
+      } else {
+        if (placeholder) placeholder.remove();
+        checked.forEach(function (cb) {
+          var chip = document.createElement('span');
+          chip.className = 'multi-select-chip';
+          chip.innerHTML = cb.value + '<span class="chip-remove" data-value="' + cb.value + '">×</span>';
+          chip.querySelector('.chip-remove').addEventListener('click', function (e) {
+            e.stopPropagation();
+            cb.checked = false;
+            updateMultiDisplay(wrap);
+            onFieldChange();
+          });
+          display.insertBefore(chip, arrow);
+        });
+      }
+    }
+
+    function onFieldChange() {
+      var cfg = FORM_CONFIG;
+      var totalRatio = cfg.initial_ratio || 50;
+
+      var combo = checkComboRule(cfg);
+      if (combo) {
+        totalRatio = combo.adjusted_ratio;
+      } else {
+        cfg.fields.forEach(function (f) {
+          if (!f.affects_ratio) return;
+          if (f.type === 'input') {
+            var el = qs('[data-fid="' + f.id + '"]');
+            if (!el || !el.value) return;
+            var val = parseInt(el.value);
+            if (isNaN(val)) return;
+            if (f.ranges && f.ranges.length > 0) {
+              var range = f.ranges.find(function (r) { return val >= r.range_min && val <= r.range_max; });
+              if (range) totalRatio += range.ratio_param;
+            }
+          } else if (f.type === 'select') {
+            if (f.allow_multiple) {
+              var wrap = qs('.multi-select[data-fid="' + f.id + '"]');
+              if (!wrap) return;
+              var fieldRatio = 0;
+              qsa('input:checked', wrap).forEach(function (cb) { fieldRatio += parseFloat(cb.dataset.ratio || 0); });
+              if (f.ratio_min_limit !== null && fieldRatio < f.ratio_min_limit) fieldRatio = f.ratio_min_limit;
+              totalRatio += fieldRatio;
+            } else {
+              var el = qs('[data-fid="' + f.id + '"]');
+              if (!el || !el.value) return;
+              var opt = el.options[el.selectedIndex];
+              if (opt && opt.dataset.ratio) totalRatio += parseFloat(opt.dataset.ratio);
+            }
+          }
+        });
+
+        // 6甲 special: each set = 0.5 ratio
+        var jia6El = qs('[data-fname*="6甲"]');
+        if (jia6El && jia6El.value) {
+          var v = parseInt(jia6El.value);
+          if (!isNaN(v) && v > 0) totalRatio += v * 0.5;
+        }
+      }
+
+      $('recovery-ratio').textContent = parseFloat(totalRatio.toFixed(2)).toFixed(2);
+      calcRental(totalRatio);
+
+      var hafuEl = qs('[data-fname*="哈夫币"]');
+      var periodEl = qs('[data-fname*="租期"]');
+      if (hafuEl && periodEl) {
+        var hafuVal = parseFloat(hafuEl.value);
+        if (!isNaN(hafuVal)) periodEl.value = Math.floor(hafuVal / 10);
+      }
+    }
+
+    function checkComboRule(cfg) {
+      if (!cfg.combo_rules || cfg.combo_rules.length === 0) return null;
+      var r0 = cfg.combo_rules[0];
+      var insEl = qs('[data-fid="' + r0.insurance_field_id + '"]');
+      var staEl = qs('[data-fid="' + r0.stamina_field_id + '"]');
+      var wgtEl = qs('[data-fid="' + r0.weight_field_id + '"]');
+      if (!insEl || !staEl || !wgtEl) return null;
+      for (var i = 0; i < cfg.combo_rules.length; i++) {
+        var r = cfg.combo_rules[i];
+        if (r.insurance_value === insEl.value && r.stamina_value === staEl.value && r.weight_value === wgtEl.value) return r;
+      }
+      return null;
+    }
+
+    function calcRental(ratio) {
+      var hafuEl = qs('[data-fname*="哈夫币"]');
+      var rentalEl = $('recovery-rental');
+      if (!hafuEl || !rentalEl) return;
+      var hafu = parseFloat(hafuEl.value);
+      if (isNaN(hafu) || hafu <= 0 || ratio <= 0) { rentalEl.textContent = '--'; return; }
+      var floatAmt = FORM_CONFIG.float_amount || 0;
+      rentalEl.textContent = Math.floor((hafu * 100) / ratio) - floatAmt;
+    }
+
+    function onSubmit() {
+      var hafuEl = qs('[data-fname*="哈夫币"]');
+      if (!hafuEl || !hafuEl.value) { alert('请先填写哈夫币纯币数量'); if (hafuEl) hafuEl.focus(); return; }
+      var rental = $('recovery-rental').textContent;
+      var ratio = $('recovery-ratio').textContent;
+      $('val-rental').textContent = rental === '--' ? '请完善信息' : rental;
+      $('val-instruction').innerHTML = '请核对估价信息后联系客服上架。<br>回收比例: <b>' + ratio + '</b><br>日租金: <b>' + rental + '</b> 元/天';
+      $('val-modal-overlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeValModal() {
+      $('val-modal-overlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function copyFromModal() {
+      var cfg = FORM_CONFIG;
+      var lines = ['北辰商行 · 租号估价表', ''];
+      cfg.fields.forEach(function (f) {
+        if (f.type === 'select' && f.allow_multiple) {
+          var wrap = qs('.multi-select[data-fid="' + f.id + '"]');
+          if (!wrap) return;
+          var vals = [];
+          qsa('input:checked', wrap).forEach(function (cb) { vals.push(cb.value); });
+          if (vals.length) lines.push(f.name + ': ' + vals.join(', '));
+        } else {
+          var el = qs('[data-fid="' + f.id + '"]');
+          if (el && el.value) lines.push(f.name + ': ' + el.value);
+        }
+      });
+      lines.push('回收比例: ' + $('recovery-ratio').textContent);
+      lines.push('回收租金: ' + $('recovery-rental').textContent);
+      var text = lines.join('\n');
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { alert('已复制到剪切板！'); }).catch(function () { fallbackCopy(text); });
+      } else {
+        fallbackCopy(text);
+      }
+    }
+
+    function fallbackCopy(text) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.cssText = 'position:fixed;opacity:0;';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); alert('已复制到剪切板！'); } catch (e) { alert('复制失败，请手动复制'); }
+      document.body.removeChild(ta);
+    }
+
+    function initExtras() {
+      var cfg = FORM_CONFIG;
+      if (cfg.qrcode_url) $('floating-qrcode').style.display = 'flex';
+      if (cfg.listing_notice) $('notice-modal-body').innerHTML = cfg.listing_notice;
+      if (cfg.about_us) $('aboutus-modal-body').innerHTML = cfg.about_us;
+      if (cfg.transaction_sections) {
+        var h = '';
+        cfg.transaction_sections.forEach(function (s) {
+          h += '<div class="tx-section"><div class="tx-section-title">' + s.title + '</div><div class="tx-grid">';
+          (s.images || []).forEach(function (img) {
+            h += '<img src="' + img.image_url + '" alt="' + s.title + '" onclick="openImagePreview(\'' + img.image_url + '\')">';
+          });
+          h += '</div></div>';
+        });
+        $('transaction-modal-body').innerHTML = h;
+      }
+
+      document.querySelectorAll('.modal-overlay').forEach(function (ov) {
+        ov.addEventListener('click', function (e) {
+          if (e.target === this) { this.classList.remove('active'); document.body.style.overflow = ''; }
+        });
+      });
+    }
+
+    function openQrcodeModal() { $('qrcode-modal-overlay').classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeQrcodeModal() { $('qrcode-modal-overlay').classList.remove('active'); document.body.style.overflow = ''; }
+    function openNoticeModal() { $('notice-modal-overlay').classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeNoticeModal() { $('notice-modal-overlay').classList.remove('active'); document.body.style.overflow = ''; }
+    function openTransactionModal() { $('transaction-modal-overlay').classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeTransactionModal() { $('transaction-modal-overlay').classList.remove('active'); document.body.style.overflow = ''; }
+    function openAboutUsModal() { $('aboutus-modal-overlay').classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeAboutUsModal() { $('aboutus-modal-overlay').classList.remove('active'); document.body.style.overflow = ''; }
+    function openImagePreview(url) { $('img-preview-img').src = url; $('img-preview-overlay').classList.add('active'); }
+    function closeImagePreview() { $('img-preview-overlay').classList.remove('active'); }
+  </script>
+</body>
+
+</html>

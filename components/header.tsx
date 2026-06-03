@@ -7,6 +7,7 @@ import { useTheme } from "next-themes"
 import { useSearch } from "@/components/search-provider"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import Link from "next/link"
 
 export default function Header() {
   const { resolvedTheme, setTheme } = useTheme()
@@ -22,10 +23,10 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/40 bg-background/85 px-4 py-3 backdrop-blur-lg">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4">
-        <div className="flex items-center gap-2.5">
+        <Link href="/"><div className="flex items-center gap-2.5">
           <img src="/images/logo.png" alt="BeiCheng" className="size-9 rounded object-cover" />
           <span className="text-base font-semibold tracking-wide">北辰商行</span>
-        </div>
+        </div></Link>
 
         <div className="flex w-full items-center gap-2 sm:w-auto">
           <div className="relative w-full sm:w-72">
