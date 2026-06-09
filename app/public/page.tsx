@@ -1,4 +1,4 @@
-"use client"
+﻿﻿"use client"
 
 import { useState, useMemo, useCallback, useRef } from "react"
 
@@ -73,7 +73,7 @@ interface FormConfig {
 
 // ===== Config =====
 const FORM_CONFIG: FormConfig = {
-  initial_ratio: 50,
+  initial_ratio: 53,
   float_amount: 1,
   announcement_text: "温馨提示：认准北辰商行上架Q群管理员，私聊出/租均为骗子",
   announcement_enabled: 1,
@@ -402,78 +402,78 @@ const FORM_CONFIG: FormConfig = {
     },
   ],
   combo_rules: [
-    { id: 72, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "3", weight_field_id: 43, weight_value: "3", adjusted_ratio: 48, remark: "433" },
-    { id: 71, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "2", adjusted_ratio: 47.5, remark: "442" },
-    { id: 70, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "3", adjusted_ratio: 47, remark: "443" },
-    { id: 69, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "4", adjusted_ratio: 46.5, remark: "444" },
-    { id: 68, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "5", adjusted_ratio: 46, remark: "445" },
-    { id: 67, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "6", adjusted_ratio: 46, remark: "446" },
-    { id: 66, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "7", adjusted_ratio: 45.5, remark: "447" },
-    { id: 65, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "3", adjusted_ratio: 46.5, remark: "453" },
-    { id: 64, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "4", adjusted_ratio: 46, remark: "454" },
-    { id: 63, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "5", adjusted_ratio: 46, remark: "455" },
-    { id: 62, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "6", adjusted_ratio: 45.5, remark: "456" },
-    { id: 61, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "7", adjusted_ratio: 45, remark: "457" },
-    { id: 60, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "3", adjusted_ratio: 45.5, remark: "463" },
-    { id: 59, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "4", adjusted_ratio: 45.5, remark: "464" },
-    { id: 58, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "5", adjusted_ratio: 44, remark: "465" },
-    { id: 57, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "6", adjusted_ratio: 44.5, remark: "466" },
-    { id: 56, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "7", adjusted_ratio: 44.5, remark: "467" },
-    { id: 55, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "3", adjusted_ratio: 45, remark: "473" },
-    { id: 54, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "4", adjusted_ratio: 44.5, remark: "474" },
-    { id: 53, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "5", adjusted_ratio: 44, remark: "475" },
-    { id: 52, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "6", adjusted_ratio: 44, remark: "476" },
-    { id: 51, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "7", adjusted_ratio: 43.5, remark: "477" },
-    { id: 50, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "3", weight_field_id: 43, weight_value: "3", adjusted_ratio: 43.5, remark: "633" },
-    { id: 49, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "3", weight_field_id: 43, weight_value: "4", adjusted_ratio: 44, remark: "634" },
-    { id: 48, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "3", weight_field_id: 43, weight_value: "5", adjusted_ratio: 43.5, remark: "635" },
-    { id: 47, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "3", weight_field_id: 43, weight_value: "6", adjusted_ratio: 43, remark: "636" },
-    { id: 46, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "3", weight_field_id: 43, weight_value: "7", adjusted_ratio: 42.5, remark: "637" },
-    { id: 45, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "3", adjusted_ratio: 43.5, remark: "643" },
-    { id: 44, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "4", adjusted_ratio: 43, remark: "644" },
-    { id: 43, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "5", adjusted_ratio: 43, remark: "645" },
-    { id: 42, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "6", adjusted_ratio: 42.5, remark: "646" },
-    { id: 41, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "7", adjusted_ratio: 42.5, remark: "647" },
-    { id: 40, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "3", adjusted_ratio: 43, remark: "653" },
-    { id: 39, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "4", adjusted_ratio: 42.5, remark: "654" },
-    { id: 38, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "5", adjusted_ratio: 42.5, remark: "655" },
-    { id: 37, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "6", adjusted_ratio: 42, remark: "656" },
-    { id: 36, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "7", adjusted_ratio: 41.5, remark: "657" },
-    { id: 35, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "3", adjusted_ratio: 42.5, remark: "663" },
-    { id: 34, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "4", adjusted_ratio: 42, remark: "664" },
-    { id: 33, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "5", adjusted_ratio: 42, remark: "665" },
-    { id: 32, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "6", adjusted_ratio: 41.5, remark: "666" },
-    { id: 31, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "7", adjusted_ratio: 41.5, remark: "667" },
-    { id: 30, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "3", adjusted_ratio: 42.5, remark: "673" },
-    { id: 29, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "4", adjusted_ratio: 42, remark: "674" },
-    { id: 28, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "5", adjusted_ratio: 41.5, remark: "675" },
-    { id: 27, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "6", adjusted_ratio: 41.5, remark: "676" },
-    { id: 26, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "7", adjusted_ratio: 41, remark: "677" },
-    { id: 25, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "3", weight_field_id: 43, weight_value: "3", adjusted_ratio: 40, remark: "933" },
-    { id: 24, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "3", weight_field_id: 43, weight_value: "4", adjusted_ratio: 39.5, remark: "934" },
-    { id: 23, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "3", weight_field_id: 43, weight_value: "5", adjusted_ratio: 39.5, remark: "935" },
-    { id: 22, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "3", weight_field_id: 43, weight_value: "6", adjusted_ratio: 39, remark: "936" },
-    { id: 21, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "3", weight_field_id: 43, weight_value: "7", adjusted_ratio: 38.5, remark: "937" },
-    { id: 20, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "3", adjusted_ratio: 39.5, remark: "943" },
-    { id: 19, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "4", adjusted_ratio: 39, remark: "944" },
-    { id: 18, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "5", adjusted_ratio: 38.5, remark: "945" },
-    { id: 17, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "6", adjusted_ratio: 38.5, remark: "946" },
-    { id: 16, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "7", adjusted_ratio: 38.5, remark: "947" },
-    { id: 15, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "3", adjusted_ratio: 39, remark: "953" },
-    { id: 14, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "4", adjusted_ratio: 38.5, remark: "954" },
-    { id: 13, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "5", adjusted_ratio: 38, remark: "955" },
-    { id: 12, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "6", adjusted_ratio: 38, remark: "956" },
-    { id: 11, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "7", adjusted_ratio: 37.5, remark: "957" },
-    { id: 10, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "3", adjusted_ratio: 39, remark: "963" },
-    { id: 9, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "4", adjusted_ratio: 38.5, remark: "964" },
-    { id: 8, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "5", adjusted_ratio: 38, remark: "965" },
-    { id: 7, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "6", adjusted_ratio: 37.5, remark: "966" },
-    { id: 6, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "7", adjusted_ratio: 37.5, remark: "967" },
-    { id: 5, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "3", adjusted_ratio: 38.5, remark: "973" },
-    { id: 4, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "4", adjusted_ratio: 38, remark: "974" },
-    { id: 3, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "5", adjusted_ratio: 37.5, remark: "975" },
-    { id: 2, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "6", adjusted_ratio: 37.5, remark: "976" },
-    { id: 1, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "7", adjusted_ratio: 37, remark: "977" },
+    { id: 72, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "3", weight_field_id: 43, weight_value: "3", adjusted_ratio: 51, remark: "433" },
+    { id: 71, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "2", adjusted_ratio: 50.5, remark: "442" },
+    { id: 70, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "3", adjusted_ratio: 50, remark: "443" },
+    { id: 69, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "4", adjusted_ratio: 49.5, remark: "444" },
+    { id: 68, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "5", adjusted_ratio: 49, remark: "445" },
+    { id: 67, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "6", adjusted_ratio: 49, remark: "446" },
+    { id: 66, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "7", adjusted_ratio: 48.5, remark: "447" },
+    { id: 65, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "3", adjusted_ratio: 49.5, remark: "453" },
+    { id: 64, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "4", adjusted_ratio: 49, remark: "454" },
+    { id: 63, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "5", adjusted_ratio: 49, remark: "455" },
+    { id: 62, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "6", adjusted_ratio: 48.5, remark: "456" },
+    { id: 61, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "7", adjusted_ratio: 48, remark: "457" },
+    { id: 60, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "3", adjusted_ratio: 48.5, remark: "463" },
+    { id: 59, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "4", adjusted_ratio: 48.5, remark: "464" },
+    { id: 58, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "5", adjusted_ratio: 47, remark: "465" },
+    { id: 57, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "6", adjusted_ratio: 47.5, remark: "466" },
+    { id: 56, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "7", adjusted_ratio: 47.5, remark: "467" },
+    { id: 55, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "3", adjusted_ratio: 48, remark: "473" },
+    { id: 54, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "4", adjusted_ratio: 47.5, remark: "474" },
+    { id: 53, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "5", adjusted_ratio: 47, remark: "475" },
+    { id: 52, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "6", adjusted_ratio: 47, remark: "476" },
+    { id: 51, insurance_field_id: 41, insurance_value: "4格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "7", adjusted_ratio: 46.5, remark: "477" },
+    { id: 50, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "3", weight_field_id: 43, weight_value: "3", adjusted_ratio: 46.5, remark: "633" },
+    { id: 49, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "3", weight_field_id: 43, weight_value: "4", adjusted_ratio: 47, remark: "634" },
+    { id: 48, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "3", weight_field_id: 43, weight_value: "5", adjusted_ratio: 46.5, remark: "635" },
+    { id: 47, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "3", weight_field_id: 43, weight_value: "6", adjusted_ratio: 46, remark: "636" },
+    { id: 46, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "3", weight_field_id: 43, weight_value: "7", adjusted_ratio: 45.5, remark: "637" },
+    { id: 45, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "3", adjusted_ratio: 46.5, remark: "643" },
+    { id: 44, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "4", adjusted_ratio: 46, remark: "644" },
+    { id: 43, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "5", adjusted_ratio: 46, remark: "645" },
+    { id: 42, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "6", adjusted_ratio: 45.5, remark: "646" },
+    { id: 41, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "7", adjusted_ratio: 45.5, remark: "647" },
+    { id: 40, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "3", adjusted_ratio: 46, remark: "653" },
+    { id: 39, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "4", adjusted_ratio: 45.5, remark: "654" },
+    { id: 38, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "5", adjusted_ratio: 45.5, remark: "655" },
+    { id: 37, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "6", adjusted_ratio: 45, remark: "656" },
+    { id: 36, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "7", adjusted_ratio: 44.5, remark: "657" },
+    { id: 35, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "3", adjusted_ratio: 45.5, remark: "663" },
+    { id: 34, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "4", adjusted_ratio: 45, remark: "664" },
+    { id: 33, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "5", adjusted_ratio: 45, remark: "665" },
+    { id: 32, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "6", adjusted_ratio: 44.5, remark: "666" },
+    { id: 31, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "7", adjusted_ratio: 44.5, remark: "667" },
+    { id: 30, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "3", adjusted_ratio: 45.5, remark: "673" },
+    { id: 29, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "4", adjusted_ratio: 45, remark: "674" },
+    { id: 28, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "5", adjusted_ratio: 44.5, remark: "675" },
+    { id: 27, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "6", adjusted_ratio: 44.5, remark: "676" },
+    { id: 26, insurance_field_id: 41, insurance_value: "6格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "7", adjusted_ratio: 44, remark: "677" },
+    { id: 25, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "3", weight_field_id: 43, weight_value: "3", adjusted_ratio: 43, remark: "933" },
+    { id: 24, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "3", weight_field_id: 43, weight_value: "4", adjusted_ratio: 42.5, remark: "934" },
+    { id: 23, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "3", weight_field_id: 43, weight_value: "5", adjusted_ratio: 42.5, remark: "935" },
+    { id: 22, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "3", weight_field_id: 43, weight_value: "6", adjusted_ratio: 42, remark: "936" },
+    { id: 21, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "3", weight_field_id: 43, weight_value: "7", adjusted_ratio: 41.5, remark: "937" },
+    { id: 20, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "3", adjusted_ratio: 42.5, remark: "943" },
+    { id: 19, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "4", adjusted_ratio: 42, remark: "944" },
+    { id: 18, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "5", adjusted_ratio: 41.5, remark: "945" },
+    { id: 17, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "6", adjusted_ratio: 41.5, remark: "946" },
+    { id: 16, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "4", weight_field_id: 43, weight_value: "7", adjusted_ratio: 41.5, remark: "947" },
+    { id: 15, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "3", adjusted_ratio: 42, remark: "953" },
+    { id: 14, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "4", adjusted_ratio: 41.5, remark: "954" },
+    { id: 13, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "5", adjusted_ratio: 41, remark: "955" },
+    { id: 12, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "6", adjusted_ratio: 41, remark: "956" },
+    { id: 11, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "5", weight_field_id: 43, weight_value: "7", adjusted_ratio: 40.5, remark: "957" },
+    { id: 10, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "3", adjusted_ratio: 42, remark: "963" },
+    { id: 9, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "4", adjusted_ratio: 41.5, remark: "964" },
+    { id: 8, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "5", adjusted_ratio: 41, remark: "965" },
+    { id: 7, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "6", adjusted_ratio: 40.5, remark: "966" },
+    { id: 6, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "6", weight_field_id: 43, weight_value: "7", adjusted_ratio: 40.5, remark: "967" },
+    { id: 5, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "3", adjusted_ratio: 41.5, remark: "973" },
+    { id: 4, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "4", adjusted_ratio: 41, remark: "974" },
+    { id: 3, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "5", adjusted_ratio: 40.5, remark: "975" },
+    { id: 2, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "6", adjusted_ratio: 40.5, remark: "976" },
+    { id: 1, insurance_field_id: 41, insurance_value: "9格", stamina_field_id: 42, stamina_value: "7", weight_field_id: 43, weight_value: "7", adjusted_ratio: 40, remark: "977" },
   ],
 }
 
@@ -514,7 +514,7 @@ export default function PublicPage() {
     const insVal = getVal(41)
     const staVal = getVal(42)
     const wgtVal = getVal(43)
-    let comboApplied = false
+    let matchedCombo: ComboRule | null = null
     if (insVal && staVal && wgtVal) {
       const found = cfg.combo_rules.find(
         (r) =>
@@ -524,13 +524,21 @@ export default function PublicPage() {
       )
       if (found) {
         totalRatio = found.adjusted_ratio
-        comboApplied = true
+        matchedCombo = found
       }
     }
 
-    if (!comboApplied) {
       cfg.fields.forEach((f) => {
         if (!f.affects_ratio) return
+
+        // Skip the three combo fields (保险格数/体力/负重) when a combo rule is active
+        if (matchedCombo && (
+          f.id === matchedCombo.insurance_field_id ||
+          f.id === matchedCombo.stamina_field_id ||
+          f.id === matchedCombo.weight_field_id
+        )) {
+          return
+        }
 
         if (f.type === "input") {
           const val = parseFloat(getVal(f.id))
@@ -563,12 +571,8 @@ export default function PublicPage() {
         }
       })
 
-      // 6甲 special: each set = 0.5 ratio
-      const jia6Val = parseFloat(getVal(46))
-      if (!isNaN(jia6Val) && jia6Val > 0) {
-        totalRatio += jia6Val * 0.5
-      }
-    }
+
+
 
     totalRatio = parseFloat(totalRatio.toFixed(2))
 
@@ -628,6 +632,10 @@ export default function PublicPage() {
 
   // ---- Copy ----
   const copyToClipboard = useCallback(() => {
+    if (!getVal(33)) {
+      alert("请先填写哈夫币纯币数量");
+      return;
+    }
     const lines = ["北辰商行 · 租号估价表", ""]
     cfg.fields.forEach((f) => {
       if (f.type === "select" && f.allow_multiple) {
@@ -667,15 +675,6 @@ export default function PublicPage() {
     }
   }
 
-  // ---- Val submit ----
-  const onSubmit = useCallback(() => {
-    if (!getVal(33)) {
-      alert("请先填写哈夫币纯币数量")
-      return
-    }
-    openModal("valuation")
-  }, [formValues, openModal])
-
   // ---- Render helpers ----
   const isRequired = (name: string) => name.indexOf("纯币") > -1 || name.indexOf("联系") > -1
 
@@ -687,7 +686,7 @@ export default function PublicPage() {
           display: inline-block;
           white-space: nowrap;
           animation: public-marquee-kf 18s linear infinite;
-          color: #8a7340;
+          color: #dc2626;
           font-size: 13px;
           font-weight: 500;
         }
@@ -741,7 +740,13 @@ export default function PublicPage() {
           </div>
 
           <div className="relative z-10">
-
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <img src="/images/logo.png" alt="北辰商行" className="size-16 rounded-lg object-cover" style={{ border: "2px solid rgba(255,255,255,0.2)", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }} />
+              <div className="text-left">
+                <div className="text-white font-bold tracking-wider" style={{ fontSize: 22, letterSpacing: 2 }}>北辰商行</div>
+                <div className="text-white/45 text-xs tracking-widest mt-0.5">BEI CHENG SHANG HANG</div>
+              </div>
+            </div>
 
             <h1 className="text-white font-bold tracking-wide mb-1" style={{ fontSize: 26, letterSpacing: 1 }}>
               三角洲租号估价表
@@ -774,87 +779,50 @@ export default function PublicPage() {
           {cfg.listing_notice && cfg.listing_notice.trim() && (
             <button
               onClick={() => openModal("notice")}
-              className="flex-1 flex items-center justify-center gap-1.5 px-1.5 py-2.5 text-xs font-semibold rounded-lg cursor-pointer transition-all duration-200"
+              className="flex-1 flex items-center justify-center gap-2 px-3 py-3 text-sm font-bold rounded-xl cursor-pointer transition-all duration-200"
               style={{
-                border: "1px solid #e0dcd6", background: "#fff",
-                color: "#7a7a7a", boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
+                border: "none",
+                background: "linear-gradient(135deg, #c9a84c, #d4b85a)",
+                color: "#fff",
+                boxShadow: "0 4px 16px rgba(201,168,76,0.35)",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "#1a3d7a"
-                e.currentTarget.style.color = "#132e5e"
-                e.currentTarget.style.background = "#f0eef5"
-                e.currentTarget.style.transform = "translateY(-1px)"
-                e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.08)"
+                e.currentTarget.style.transform = "translateY(-2px)"
+                e.currentTarget.style.boxShadow = "0 6px 24px rgba(201,168,76,0.5)"
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "#e0dcd6"
-                e.currentTarget.style.color = "#7a7a7a"
-                e.currentTarget.style.background = "#fff"
                 e.currentTarget.style.transform = "none"
-                e.currentTarget.style.boxShadow = "0 1px 3px rgba(0,0,0,0.06)"
+                e.currentTarget.style.boxShadow = "0 4px 16px rgba(201,168,76,0.35)"
               }}
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-3.5">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="size-4">
                 <circle cx="12" cy="12" r="10" /><line x1="12" y1="16" x2="12" y2="12" /><line x1="12" y1="8" x2="12.01" y2="8" />
               </svg>
               上架须知
             </button>
           )}
 
-          {cfg.transaction_sections && cfg.transaction_sections.length > 0 && (
-            <button
-              onClick={() => openModal("transaction")}
-              className="flex-1 flex items-center justify-center gap-1.5 px-1.5 py-2.5 text-xs font-semibold rounded-lg cursor-pointer transition-all duration-200"
-              style={{
-                border: "1px solid #e0dcd6", background: "#fff",
-                color: "#7a7a7a", boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "#1a3d7a"
-                e.currentTarget.style.color = "#132e5e"
-                e.currentTarget.style.background = "#f0eef5"
-                e.currentTarget.style.transform = "translateY(-1px)"
-                e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.08)"
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "#e0dcd6"
-                e.currentTarget.style.color = "#7a7a7a"
-                e.currentTarget.style.background = "#fff"
-                e.currentTarget.style.transform = "none"
-                e.currentTarget.style.boxShadow = "0 1px 3px rgba(0,0,0,0.06)"
-              }}
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-3.5">
-                <rect x="3" y="3" width="18" height="18" rx="2" /><line x1="3" y1="9" x2="21" y2="9" /><line x1="9" y1="21" x2="9" y2="9" />
-              </svg>
-              成交记录
-            </button>
-          )}
-
+          
           {cfg.about_us && cfg.about_us.trim() && (
             <button
               onClick={() => openModal("aboutus")}
-              className="flex-1 flex items-center justify-center gap-1.5 px-1.5 py-2.5 text-xs font-semibold rounded-lg cursor-pointer transition-all duration-200"
+              className="flex-1 flex items-center justify-center gap-2 px-3 py-3 text-sm font-bold rounded-xl cursor-pointer transition-all duration-200"
               style={{
-                border: "1px solid #e0dcd6", background: "#fff",
-                color: "#7a7a7a", boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
+                border: "none",
+                background: "linear-gradient(135deg, #c9a84c, #d4b85a)",
+                color: "#fff",
+                boxShadow: "0 4px 16px rgba(19,46,94,0.35)",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "#1a3d7a"
-                e.currentTarget.style.color = "#132e5e"
-                e.currentTarget.style.background = "#f0eef5"
-                e.currentTarget.style.transform = "translateY(-1px)"
-                e.currentTarget.style.boxShadow = "0 4px 16px rgba(0,0,0,0.08)"
+                e.currentTarget.style.transform = "translateY(-2px)"
+                e.currentTarget.style.boxShadow = "0 6px 24px rgba(19,46,94,0.5)"
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "#e0dcd6"
-                e.currentTarget.style.color = "#7a7a7a"
-                e.currentTarget.style.background = "#fff"
                 e.currentTarget.style.transform = "none"
-                e.currentTarget.style.boxShadow = "0 1px 3px rgba(0,0,0,0.06)"
+                e.currentTarget.style.boxShadow = "0 4px 16px rgba(19,46,94,0.35)"
               }}
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-3.5">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="size-4">
                 <circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><line x1="12" y1="17" x2="12.01" y2="17" />
               </svg>
               关于我们
@@ -1007,7 +975,7 @@ export default function PublicPage() {
             {/* Input */}
             {f.type === "input" && (
               <input
-                type={f.id === 35 ? "text" : "number"}
+                type={f.id === 35 || f.id === 51 ? "text" : "number"}
                 readOnly={f.id === 35}
                 value={f.id === 35 ? autoPeriod || "" : getVal(f.id)}
                 onChange={(e) => {
@@ -1038,14 +1006,14 @@ export default function PublicPage() {
             )}
 
             {f.remark && (
-              <div className="text-xs mt-1" style={{ color: "#a08040", lineHeight: 1.5 }}>
+              <div className="text-xs mt-1" style={{ color: "#dc2626", lineHeight: 1.5 }}>
                 {f.remark}
               </div>
             )}
           </div>
         ))}
 
-        {/* ===== Price Summary ===== */}
+{/* ===== Price Summary ===== */}
         <div
           className="mb-4 text-white"
           style={{
@@ -1056,34 +1024,34 @@ export default function PublicPage() {
         >
           <div className="flex justify-between items-center py-2" style={{ borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
             <span className="text-xs opacity-85">回收比例</span>
-            <span className="font-bold" style={{ fontSize: 15 }}>{ratio}</span>
+            <span className="font-bold" style={{ fontSize: 15 }}>{ratio !== String(cfg.initial_ratio.toFixed(2)) ? ratio : "自动计算"}</span>
           </div>
           <div className="flex justify-between items-center py-2">
-            <span className="text-xs opacity-85">预估日租金（元/天）</span>
-            <span className="font-bold" style={{ fontSize: 22, color: "#d4af37" }}>{rental}</span>
+            <span className="text-xs opacity-85">预估租金（元）</span>
+            <span className="font-bold" style={{ fontSize: 22, color: "#d4af37" }}>{rental !== "--" ? rental : "自动计算"}</span>
           </div>
         </div>
 
         {/* ===== Submit Button ===== */}
         <button
-          onClick={onSubmit}
+          onClick={copyToClipboard}
           className="w-full flex items-center justify-center gap-2 font-bold tracking-wide border-none cursor-pointer transition-all duration-200"
           style={{
             padding: 15,
-            background: "linear-gradient(135deg, #132e5e, #1a3d7a)",
+            background: "linear-gradient(135deg, #c9a84c, #d4b85a)",
             color: "#fff", borderRadius: 10, fontSize: 15.5, letterSpacing: 0.5,
-            boxShadow: "0 4px 16px rgba(19,46,94,0.3)",
+            boxShadow: "0 4px 16px rgba(201,168,76,0.3)",
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = "translateY(-2px)"
-            e.currentTarget.style.boxShadow = "0 6px 24px rgba(19,46,94,0.4)"
+            e.currentTarget.style.boxShadow = "0 6px 24px rgba(201,168,76,0.4)"
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = "none"
-            e.currentTarget.style.boxShadow = "0 4px 16px rgba(19,46,94,0.3)"
+            e.currentTarget.style.boxShadow = "0 4px 16px rgba(201,168,76,0.3)"
           }}
         >
-          📊 查看估价结果
+          📋 复制估价信息
         </button>
 
         {/* ===== Hidden textarea for copy ===== */}
@@ -1137,7 +1105,7 @@ export default function PublicPage() {
             <div
               className="flex justify-between items-center sticky top-0 z-10 text-white"
               style={{
-                background: "linear-gradient(135deg, #132e5e, #1a3d7a)",
+                background: "linear-gradient(135deg, #c9a84c, #d4b85a)",
                 padding: "20px 22px", borderRadius: "14px 14px 0 0",
               }}
             >
@@ -1166,7 +1134,7 @@ export default function PublicPage() {
                 onClick={closeModal}
                 className="w-full mt-2.5 py-3 border-none text-white font-semibold cursor-pointer transition-all"
                 style={{
-                  background: "linear-gradient(135deg, #132e5e, #1a3d7a)", borderRadius: 10, fontSize: 14,
+                  background: "linear-gradient(135deg, #c9a84c, #d4b85a)", borderRadius: 10, fontSize: 14,
                 }}
               >
                 关闭
@@ -1191,7 +1159,7 @@ export default function PublicPage() {
             <div
               className="flex justify-between items-center sticky top-0 z-10 text-white"
               style={{
-                background: "linear-gradient(135deg, #132e5e, #1a3d7a)",
+                background: "linear-gradient(135deg, #c9a84c, #d4b85a)",
                 padding: "20px 22px", borderRadius: "14px 14px 0 0",
               }}
             >
@@ -1215,69 +1183,6 @@ export default function PublicPage() {
         </div>
       )}
 
-      {/* Transaction Modal */}
-      {activeModal === "transaction" && (
-        <div
-          className="fixed inset-0 z-[1000] flex items-center justify-center p-5"
-          style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(4px)" }}
-          onClick={closeModal}
-        >
-          <div
-            className="public-modal-in bg-white w-full overflow-y-auto"
-            style={{ maxWidth: 480, borderRadius: 14, maxHeight: "85vh", boxShadow: "0 8px 32px rgba(0,0,0,0.12)" }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div
-              className="flex justify-between items-center sticky top-0 z-10 text-white"
-              style={{
-                background: "linear-gradient(135deg, #132e5e, #1a3d7a)",
-                padding: "20px 22px", borderRadius: "14px 14px 0 0",
-              }}
-            >
-              <h2 className="text-lg m-0">成交记录</h2>
-              <button
-                onClick={closeModal}
-                className="flex items-center justify-center border-none text-white cursor-pointer transition-all rounded-full"
-                style={{
-                  background: "rgba(255,255,255,0.2)", width: 32, height: 32, fontSize: 20, lineHeight: 1,
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.35)"; e.currentTarget.style.transform = "rotate(90deg)" }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.2)"; e.currentTarget.style.transform = "none" }}
-              >
-                &times;
-              </button>
-            </div>
-            <div className="p-5 text-sm leading-relaxed" style={{ color: "#333", lineHeight: 1.8 }}>
-              {cfg.transaction_sections.map((s) => (
-                <div key={s.id} className="mb-5">
-                  <div
-                    className="font-semibold pb-1.5 mb-2.5"
-                    style={{
-                      fontSize: 15, color: "#0a1f3f",
-                      borderBottom: "2px solid #d4c8a8",
-                    }}
-                  >
-                    {s.title}
-                  </div>
-                  <div className="grid grid-cols-3 gap-2 max-sm:grid-cols-2">
-                    {s.images.map((img, i) => (
-                      <img
-                        key={i}
-                        src={img.image_url}
-                        alt={s.title}
-                        className="w-full rounded-lg cursor-pointer transition-transform border border-gray-100"
-                        onClick={() => openPreview(img.image_url)}
-                        onError={(e) => { (e.currentTarget as HTMLElement).style.display = "none" }}
-                      />
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* About Us Modal */}
       {activeModal === "aboutus" && (
         <div
@@ -1293,7 +1198,7 @@ export default function PublicPage() {
             <div
               className="flex justify-between items-center sticky top-0 z-10 text-white"
               style={{
-                background: "linear-gradient(135deg, #132e5e, #1a3d7a)",
+                background: "linear-gradient(135deg, #c9a84c, #d4b85a)",
                 padding: "20px 22px", borderRadius: "14px 14px 0 0",
               }}
             >
@@ -1317,102 +1222,6 @@ export default function PublicPage() {
         </div>
       )}
 
-      {/* Valuation Modal */}
-      {activeModal === "valuation" && (
-        <div
-          className="fixed inset-0 z-[1000] flex items-center justify-center p-5"
-          style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(4px)" }}
-          onClick={closeModal}
-        >
-          <div
-            className="public-modal-in bg-white w-full"
-            style={{ maxWidth: 480, borderRadius: 14, boxShadow: "0 8px 32px rgba(0,0,0,0.12)" }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div
-              className="flex justify-between items-center text-white"
-              style={{
-                background: "linear-gradient(135deg, #132e5e, #1a3d7a)",
-                padding: "20px 22px", borderRadius: "14px 14px 0 0",
-              }}
-            >
-              <h2 className="text-lg m-0">估价结果</h2>
-              <button
-                onClick={closeModal}
-                className="flex items-center justify-center border-none text-white cursor-pointer transition-all rounded-full"
-                style={{
-                  background: "rgba(255,255,255,0.2)", width: 32, height: 32, fontSize: 20, lineHeight: 1,
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.35)"; e.currentTarget.style.transform = "rotate(90deg)" }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.2)"; e.currentTarget.style.transform = "none" }}
-              >
-                &times;
-              </button>
-            </div>
-            <div className="p-5 text-sm" style={{ color: "#333", lineHeight: 1.8 }}>
-              <div className="mb-4">
-                <div className="text-xs font-semibold mb-2 flex items-center gap-1.5" style={{ color: "#132e5e" }}>
-                  <span>预估日租金</span>
-                </div>
-                <div
-                  className="text-center py-4"
-                  style={{
-                    background: "#f4f3f0", borderRadius: 10,
-                    border: "1px dashed #e0dcd6",
-                  }}
-                >
-                  <span className="font-bold" style={{ fontSize: 28, color: "#0a1f3f" }}>{rental}</span>
-                  <span style={{ fontSize: 14, color: "#7a7a7a" }}> 元/天</span>
-                </div>
-              </div>
-
-              {cfg.qrcode_url && (
-                <div className="text-center my-4">
-                  <img
-                    src={cfg.qrcode_url}
-                    alt="上架群"
-                    className="max-w-full"
-                    style={{ maxWidth: 180, borderRadius: 10, border: "2px solid #e0dcd6", padding: 8, background: "#fff" }}
-                    onError={(e) => { (e.currentTarget as HTMLElement).style.display = "none" }}
-                  />
-                  <p className="mt-2 text-xs" style={{ color: "#8a7340" }}>扫码联系客服上架</p>
-                </div>
-              )}
-
-              <div
-                className="p-3.5 text-xs mb-4 leading-relaxed"
-                style={{
-                  background: "#f7f3e8", borderRadius: 10, color: "#8a7340",
-                  borderLeft: "4px solid #c9a84c",
-                }}
-              >
-                请核对估价信息后联系客服上架。<br />
-                回收比例: <b style={{ color: "#0a1f3f" }}>{ratio}</b><br />
-                日租金: <b style={{ color: "#0a1f3f" }}>{rental}</b> 元/天
-              </div>
-
-              <button
-                onClick={copyToClipboard}
-                className="w-full py-3 border-none text-white font-semibold cursor-pointer transition-all"
-                style={{
-                  background: "linear-gradient(135deg, #132e5e, #1a3d7a)", borderRadius: 10, fontSize: 14,
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-1px)"
-                  e.currentTarget.style.boxShadow = "0 4px 16px rgba(19,46,94,0.3)"
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "none"
-                  e.currentTarget.style.boxShadow = "none"
-                }}
-              >
-                复制估价信息
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Image Preview Overlay */}
       {activeModal === "preview" && (
         <div
@@ -1429,6 +1238,19 @@ export default function PublicPage() {
           />
         </div>
       )}
-    </>
+
+      {/* ===== Footer ===== */}
+      <div className="mt-8 pt-6 pb-4 text-center" style={{ borderTop: "1px solid #e8e4de" }}>
+        <div className="flex items-center justify-center gap-3 mb-2">
+          <img src="/images/logo.png" alt="北辰商行" className="size-12 rounded-lg object-cover" style={{ border: "1px solid rgba(0,0,0,0.06)" }} />
+          <div className="text-left">
+            <div className="font-bold tracking-wider" style={{ fontSize: 16, color: "#4a4a4a", letterSpacing: 1.5 }}>北辰商行</div>
+            <div className="text-xs tracking-widest" style={{ color: "#b0b0b0" }}>BEI CHENG SHANG HANG</div>
+          </div>
+        </div>
+        <p className="text-xs mt-3" style={{ color: "#c0c0c0", letterSpacing: 1 }}>
+          真实可靠 · 诚信经营 · 安全交易
+        </p>
+      </div>    </>
   )
 }

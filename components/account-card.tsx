@@ -108,7 +108,7 @@ export function AccountCard({ item }: AccountCardProps) {
         </div>
         <div className="shrink-0">
           <p className="text-xs font-semibold tabular-nums text-red-600/70 dark:text-red-400/70">
-            <span className="font-semibold text-red-500">比例 </span>1:{(100 / item.recycle_ratio).toFixed(2)}
+            <span className="font-semibold text-red-500">比例 </span>1:{(item.hafu_coins / item.recycle_rent * 100).toFixed(0)}
           </p>
         </div>
       </div>
