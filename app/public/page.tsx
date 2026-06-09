@@ -715,6 +715,25 @@ export default function PublicPage() {
           background-position: right 14px center;
           padding-right: 36px;
         }
+        .public-field-marker { display: inline-block; width: 7px; height: 7px; flex-shrink: 0; transform: rotate(45deg); border-radius: 1px; }
+        .public-game-badge { display:inline-flex; align-items:center; gap:5px; padding:4px 14px; border-radius:20px; font-size:11px; font-weight:600; letter-spacing:0.5px; color:rgba(255,255,255,0.85); background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); backdrop-filter:blur(4px); }
+        .public-tactical-stripe { height:2.5px; width:60px; border-radius:2px; margin:0 auto; background: linear-gradient(90deg,transparent,rgba(201,168,76,0.6),rgba(201,168,76,0.8),rgba(201,168,76,0.6),transparent); }
+        .public-corner-bracket.br { bottom:8px; right:8px; border-width:0 1.5px 1.5px 0; border-radius:0 0 2px 0; }
+        .public-corner-bracket.bl { bottom:8px; left:8px; border-width:0 0 1.5px 1.5px; border-radius:0 0 0 2px; }
+        .public-corner-bracket.tr { top:8px; right:8px; border-width:1.5px 1.5px 0 0; border-radius:0 2px 0 0; }
+        .public-corner-bracket.tl { top:8px; left:8px; border-width:1.5px 0 0 1.5px; border-radius:2px 0 0 0; }
+        .public-corner-bracket { position: absolute; width: 16px; height: 16px; border-color: rgba(255,255,255,0.2); border-style: solid; }
+        .public-delta-emblem svg { width: 100%; height: 100%; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4)); }
+        .public-delta-emblem { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; }
+        }
+            repeating-linear-gradient(0deg,transparent,transparent 24px,rgba(255,255,255,0.05) 24px,rgba(255,255,255,0.05) 25px);
+            repeating-linear-gradient(-60deg,transparent,transparent 14px,rgba(255,255,255,0.06) 14px,rgba(255,255,255,0.06) 15px),
+            repeating-linear-gradient(60deg,transparent,transparent 14px,rgba(255,255,255,0.06) 14px,rgba(255,255,255,0.06) 15px),
+            radial-gradient(circle at 75% 75%, rgba(255,255,255,0.15) 0.5px, transparent 0.5px),
+            radial-gradient(circle at 25% 25%, rgba(255,255,255,0.15) 0.5px, transparent 0.5px),
+          background-image:
+        .public-hex-bg { position: absolute; inset: 0; z-index: 0; border-radius: inherit; opacity: 0.12;
+        /* ===== Delta Force / 三角洲行动 Theming ===== */
       `}</style>
 
       <div
@@ -737,10 +756,30 @@ export default function PublicPage() {
                 borderRadius: "16px 16px 0 0",
               }}
             />
+            <div className="public-hex-bg" />
           </div>
 
+          <div className="public-corner-bracket tl" />
+          <div className="public-corner-bracket tr" />
+          <div className="public-corner-bracket bl" />
+          <div className="public-corner-bracket br" />
           <div className="relative z-10">
             <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="public-delta-emblem">
+                <svg viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="dlg" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#d4af37" />
+                      <stop offset="100%" stop-color="#b8942e" />
+                    </linearGradient>
+                  </defs>
+                  <polygon points="21,1 41,36 1,36" fill="none" stroke="url(#dlg)" stroke-width="1.8" />
+                  <polygon points="21,10 33,32 9,32" fill="none" stroke="url(#dlg)" stroke-width="1.5" opacity="0.7" />
+                  <circle cx="21" cy="26" r="3" fill="#d4af37" />
+                  <line x1="21" y1="36" x2="21" y2="39" stroke="#d4af37" stroke-width="1.2" opacity="0.5" />
+                  <line x1="11" y1="37" x2="31" y2="37" stroke="#d4af37" stroke-width="1.2" opacity="0.3" />
+                </svg>
+              </div>
               <img src="/images/logo.png" alt="北辰商行" className="size-16 rounded-lg object-cover" style={{ border: "2px solid rgba(255,255,255,0.2)", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }} />
               <div className="text-left">
                 <div className="text-white font-bold tracking-wider" style={{ fontSize: 22, letterSpacing: 2 }}>北辰商行</div>
@@ -754,6 +793,17 @@ export default function PublicPage() {
             <p className="text-white/75 text-xs tracking-wide" style={{ letterSpacing: 0.5 }}>
               快速估价 · 安全交易
             </p>
+            <div className="flex items-center justify-center gap-2 mt-3">
+              <span className="public-game-badge">
+                <svg width="12" height="12" viewBox="0 0 12 12"><polygon points="6,0 12,10 0,10" fill="#d4af37" opacity="0.8" /></svg>
+                三角洲行动
+              </span>
+              <span className="public-game-badge">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="rgba(255,255,255,0.5)" stroke-width="1" /><circle cx="6" cy="6" r="2" fill="rgba(255,255,255,0.5)" /></svg>
+                TACTICAL
+              </span>
+            </div>
+            <div className="public-tactical-stripe mt-3" />
           </div>
         </div>
 
@@ -782,7 +832,7 @@ export default function PublicPage() {
               className="flex-1 flex items-center justify-center gap-2 px-3 py-3 text-sm font-bold rounded-xl cursor-pointer transition-all duration-200"
               style={{
                 border: "none",
-                background: "linear-gradient(135deg, #c9a84c, #d4b85a)",
+            background: "linear-gradient(135deg, #0f2b2b, #1a3d3d, #2a5a4a)",
                 color: "#fff",
                 boxShadow: "0 4px 16px rgba(201,168,76,0.35)",
               }}
@@ -809,7 +859,7 @@ export default function PublicPage() {
               className="flex-1 flex items-center justify-center gap-2 px-3 py-3 text-sm font-bold rounded-xl cursor-pointer transition-all duration-200"
               style={{
                 border: "none",
-                background: "linear-gradient(135deg, #c9a84c, #d4b85a)",
+            background: "linear-gradient(135deg, #0f2b2b, #1a3d3d, #2a5a4a)",
                 color: "#fff",
                 boxShadow: "0 4px 16px rgba(19,46,94,0.35)",
               }}
@@ -834,10 +884,7 @@ export default function PublicPage() {
         {cfg.fields.map((f) => (
           <div key={f.id} className="mb-4">
             <label className="flex items-center gap-1.5 mb-1.5 text-sm font-semibold tracking-tight" style={{ color: "#0a1f3f" }}>
-              <span
-                className="size-1.5 rounded-full shrink-0"
-                style={{ background: isRequired(f.name) ? "#e03030" : "#1a3d7a" }}
-              />
+                <span className="public-field-marker" style={{ background: isRequired(f.name) ? "#e03030" : "#1a3d7a" }} />
               {f.name}
             </label>
 
@@ -1018,7 +1065,7 @@ export default function PublicPage() {
           className="mb-4 text-white"
           style={{
             background: "linear-gradient(135deg, #0a1f3f, #132e5e)",
-            borderRadius: 14, padding: 20,
+            borderRadius: 14, padding: "20px 20px 8px",
             boxShadow: "0 6px 24px rgba(19,46,94,0.3)",
           }}
         >
@@ -1030,6 +1077,12 @@ export default function PublicPage() {
             <span className="text-xs opacity-85">预估租金（元）</span>
             <span className="font-bold" style={{ fontSize: 22, color: "#d4af37" }}>{rental !== "--" ? rental : "自动计算"}</span>
           </div>
+          <div
+            className="text-center"
+            style={{ marginTop: 2, fontSize: 13, color: "#dc2626", lineHeight: 1.5 }}
+          >
+            此预估租金为纯币价格，不含头、甲及 AW 子弹
+          </div>
         </div>
 
         {/* ===== Submit Button ===== */}
@@ -1038,9 +1091,10 @@ export default function PublicPage() {
           className="w-full flex items-center justify-center gap-2 font-bold tracking-wide border-none cursor-pointer transition-all duration-200"
           style={{
             padding: 15,
-            background: "linear-gradient(135deg, #c9a84c, #d4b85a)",
-            color: "#fff", borderRadius: 10, fontSize: 15.5, letterSpacing: 0.5,
-            boxShadow: "0 4px 16px rgba(201,168,76,0.3)",
+            background: "linear-gradient(135deg, #0f2b2b, #1a3d3d, #2a5a4a)",
+            color: "#d4af37", borderRadius: 10, fontSize: 15.5, letterSpacing: 0.5,
+            border: "1px solid rgba(212,175,55,0.3)",
+            boxShadow: "0 4px 16px rgba(0,0,0,0.3)",
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = "translateY(-2px)"
@@ -1105,7 +1159,7 @@ export default function PublicPage() {
             <div
               className="flex justify-between items-center sticky top-0 z-10 text-white"
               style={{
-                background: "linear-gradient(135deg, #c9a84c, #d4b85a)",
+            background: "linear-gradient(135deg, #0f2b2b, #1a3d3d, #2a5a4a)",
                 padding: "20px 22px", borderRadius: "14px 14px 0 0",
               }}
             >
@@ -1134,7 +1188,7 @@ export default function PublicPage() {
                 onClick={closeModal}
                 className="w-full mt-2.5 py-3 border-none text-white font-semibold cursor-pointer transition-all"
                 style={{
-                  background: "linear-gradient(135deg, #c9a84c, #d4b85a)", borderRadius: 10, fontSize: 14,
+            background: "linear-gradient(135deg, #0f2b2b, #1a3d3d, #2a5a4a)",
                 }}
               >
                 关闭
@@ -1159,7 +1213,7 @@ export default function PublicPage() {
             <div
               className="flex justify-between items-center sticky top-0 z-10 text-white"
               style={{
-                background: "linear-gradient(135deg, #c9a84c, #d4b85a)",
+            background: "linear-gradient(135deg, #0f2b2b, #1a3d3d, #2a5a4a)",
                 padding: "20px 22px", borderRadius: "14px 14px 0 0",
               }}
             >
@@ -1198,7 +1252,7 @@ export default function PublicPage() {
             <div
               className="flex justify-between items-center sticky top-0 z-10 text-white"
               style={{
-                background: "linear-gradient(135deg, #c9a84c, #d4b85a)",
+            background: "linear-gradient(135deg, #0f2b2b, #1a3d3d, #2a5a4a)",
                 padding: "20px 22px", borderRadius: "14px 14px 0 0",
               }}
             >
