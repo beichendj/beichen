@@ -1,6 +1,6 @@
 {
     "data": {
-        "total": 180,
+        "total": 50,
         "page": 1,
         "last_page": 4,
         "limit": 50,
@@ -879,31 +879,6 @@
                 "weapon_skin": "",
                 "remark": "",
                 "owner_online_time": 0
-            },
-            {
-                "id": 2383,
-                "account_no": "",
-                "hafu_coins": 35,
-                "login_method": "VX扫码",
-                "rank": "黄金",
-                "secret_kd": 0,
-                "level": 46,
-                "experience_cards": 0,
-                "insurance_slots": "9格",
-                "stamina": 4,
-                "load_capacity": 4,
-                "awm_bullets": 7,
-                "six_head_count": 0,
-                "six_armor_count": 0,
-                "deposit": 200,
-                "rental_days": 4,
-                "recycle_ratio": 39,
-                "recycle_rent": 88,
-                "knife_skin": "",
-                "gun_skin": "",
-                "weapon_skin": "",
-                "remark": "",
-                "owner_online_time": 24
             },
             {
                 "id": 2380,

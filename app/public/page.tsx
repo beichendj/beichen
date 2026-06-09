@@ -769,15 +769,15 @@ export default function PublicPage() {
                 <svg viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg">
                   <defs>
                     <linearGradient id="dlg" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stop-color="#d4af37" />
-                      <stop offset="100%" stop-color="#b8942e" />
+                      <stop offset="0%" stopColor="#d4af37" />
+                      <stop offset="100%" stopColor="#b8942e" />
                     </linearGradient>
                   </defs>
-                  <polygon points="21,1 41,36 1,36" fill="none" stroke="url(#dlg)" stroke-width="1.8" />
-                  <polygon points="21,10 33,32 9,32" fill="none" stroke="url(#dlg)" stroke-width="1.5" opacity="0.7" />
+                  <polygon points="21,1 41,36 1,36" fill="none" stroke="url(#dlg)" strokeWidth="1.8" />
+                  <polygon points="21,10 33,32 9,32" fill="none" stroke="url(#dlg)" strokeWidth="1.5" opacity="0.7" />
                   <circle cx="21" cy="26" r="3" fill="#d4af37" />
-                  <line x1="21" y1="36" x2="21" y2="39" stroke="#d4af37" stroke-width="1.2" opacity="0.5" />
-                  <line x1="11" y1="37" x2="31" y2="37" stroke="#d4af37" stroke-width="1.2" opacity="0.3" />
+                  <line x1="21" y1="36" x2="21" y2="39" stroke="#d4af37" strokeWidth="1.2" opacity="0.5" />
+                  <line x1="11" y1="37" x2="31" y2="37" stroke="#d4af37" strokeWidth="1.2" opacity="0.3" />
                 </svg>
               </div>
               <img src="/images/logo.png" alt="北辰商行" className="size-16 rounded-lg object-cover" style={{ border: "2px solid rgba(255,255,255,0.2)", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }} />
@@ -799,7 +799,7 @@ export default function PublicPage() {
                 三角洲行动
               </span>
               <span className="public-game-badge">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="rgba(255,255,255,0.5)" stroke-width="1" /><circle cx="6" cy="6" r="2" fill="rgba(255,255,255,0.5)" /></svg>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="rgba(255,255,255,0.5)" strokeWidth="1" /><circle cx="6" cy="6" r="2" fill="rgba(255,255,255,0.5)" /></svg>
                 TACTICAL
               </span>
             </div>

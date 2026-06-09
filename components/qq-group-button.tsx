@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import * as React from "react"
 import { X } from "lucide-react"
@@ -18,9 +18,9 @@ export function QqGroupButton() {
     <Dialog>
       <DialogTrigger
         className="fixed top-1/2 z-40 flex size-14 -translate-y-1/2 items-center justify-center rounded-full bg-primary shadow-2xl ring-1 ring-white/20 dark:ring-white/10 transition-shadow duration-200 hover:shadow-[0_0_24px_-4px_hsl(var(--primary))] active:scale-95 right-[max(1rem,calc((100vw-1152px)/2-96px))]"
-        aria-label="加入QQ群"
+        aria-label="添加客服微信"
       >
-        <img src="/images/logo.png" alt="加入QQ群" className="size-full rounded-full object-cover" />
+        <img src="/images/logo.png" alt="添加客服微信" className="size-full rounded-full object-cover" />
       </DialogTrigger>
 
       <DialogContent>
@@ -29,14 +29,14 @@ export function QqGroupButton() {
         </DialogClose>
 
         <DialogHeader>
-          <DialogTitle>加入QQ群</DialogTitle>
-          <DialogDescription>扫码加入QQ群，获取最新信息</DialogDescription>
+          <DialogTitle>添加客服微信</DialogTitle>
+          <DialogDescription>扫码添加客服微信，获取最新信息</DialogDescription>
         </DialogHeader>
 
         {/* 二维码占位 */}
         <div className="flex size-48 items-center justify-center self-center rounded-lg border-2 border-dashed border-muted-foreground/30 bg-muted/20">
           <span className="text-center text-sm text-muted-foreground">
-            QQ群二维码
+            客服微信二维码
             <br />
             （占位）
           </span>

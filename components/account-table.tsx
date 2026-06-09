@@ -1,7 +1,7 @@
-"use client"
+﻿"use client"
 
 import * as React from "react"
-import { ChevronsUpDown, ListFilter } from "lucide-react"
+import { ChevronLeft, ChevronRight, ChevronsUpDown, ListFilter } from "lucide-react"
 
 import { AccountCard } from "@/components/account-card"
 import {
@@ -37,14 +37,22 @@ export function AccountTable({ items }: AccountTableProps) {
   const [sortDir, setSortDir] = React.useState<SortDir>("desc")
   const [filterOpen, setFilterOpen] = React.useState(false)
   const [filters, setFilters] = React.useState<FilterState>(defaultFilterState)
-  const [appliedFilters, setAppliedFilters] =
-    React.useState<FilterState>(defaultFilterState)
+  const [appliedFilters, setAppliedFilters] = React.useState<FilterState>(defaultFilterState)
+  const [page, setPage] = React.useState(1)
 
   const rows = React.useMemo(() => {
     const searched = applySearchQuery(items, query)
     const filtered = applyValuationFilters(searched, appliedFilters)
     return sortValuationList(filtered, activeKey, sortDir)
   }, [items, query, activeKey, sortDir, appliedFilters])
+
+  const pageSize = 9
+  const totalPages = Math.ceil(rows.length / pageSize)
+  const paginatedRows = rows.slice((page - 1) * pageSize, page * pageSize)
+
+  // Reset page when filters/search change
+  React.useEffect(() => { setPage(1) }, [rows.length])
+
 
   const hasActiveFilters =
     JSON.stringify(appliedFilters) !== JSON.stringify(defaultFilterState)
@@ -66,7 +74,6 @@ export function AccountTable({ items }: AccountTableProps) {
   return (
     <div className="rounded-lg border border-border/70 bg-card">
       <div className="flex items-center justify-between border-b border-border/30 bg-muted/8 px-2 sm:px-4">
-        <div className="flex items-center gap-1">
           {sortOptions.map((option) => {
           const isActive =
             option.key === "default"
@@ -92,7 +99,6 @@ export function AccountTable({ items }: AccountTableProps) {
             </button>
           )
         })}
-        </div>
         <button
           type="button"
           onClick={() => setFilterOpen(true)}
@@ -116,9 +122,9 @@ export function AccountTable({ items }: AccountTableProps) {
         onConfirm={setAppliedFilters}
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 sm:p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 p-2 sm:p-3">
         {rows.length > 0 ? (
-          rows.map((item) => <AccountCard key={item.id} item={item} />)
+          paginatedRows.map((item) => <AccountCard key={item.id} item={item} />)
         ) : (
           <p className="col-span-full py-12 text-center text-sm text-muted-foreground">
             {query.trim()
@@ -127,6 +133,41 @@ export function AccountTable({ items }: AccountTableProps) {
           </p>
         )}
       </div>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-center gap-2 border-t border-border/30 px-2 py-3">
+          <button
+            type="button"
+            disabled={page <= 1}
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
+            className={cn("inline-flex items-center gap-1 rounded-md px-3 py-1.5 text-sm transition-colors", page <= 1 ? "text-muted-foreground/30 cursor-not-allowed" : "text-muted-foreground hover:bg-muted/10 hover:text-foreground")}
+          >
+            <ChevronLeft className="size-3.5" />
+            上一页
+          </button>
+          {Array.from({ length: totalPages }, (_, j) => j + 1).map((p) => (
+            <button
+              key={p}
+              type="button"
+              onClick={() => setPage(p)}
+              className={cn("inline-flex items-center justify-center rounded-md px-2.5 py-1 text-sm tabular-nums transition-colors min-w-[32px]", p === page ? "bg-primary/10 font-medium text-primary" : "text-muted-foreground/60 hover:bg-muted/10 hover:text-foreground")}
+            >
+              {p}
+            </button>
+          ))}
+          <button
+            type="button"
+            disabled={page >= totalPages}
+            onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+            className={cn("inline-flex items-center gap-1 rounded-md px-3 py-1.5 text-sm transition-colors", page >= totalPages ? "text-muted-foreground/30 cursor-not-allowed" : "text-muted-foreground hover:bg-muted/10 hover:text-foreground")}
+          >
+            下一页
+            <ChevronRight className="size-3.5" />
+          </button>
+        </div>
+      )}
     </div>
+
   )
 }

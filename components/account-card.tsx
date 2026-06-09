@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import * as React from "react"
 import { Check, Copy } from "lucide-react"
@@ -38,6 +38,7 @@ function buildCopyText(item: ValuationItem) {
   const end = `${eY}.${eM}.${eD}-${h}:${m}`
   return [
     `编号: ${item.account_no}`,
+    `纯币: ${item.hafu_coins}M`,
     `租金: ¥${item.recycle_rent}`,
     `押金: ¥${item.deposit}`,
     `租期: ${item.rental_days}天`,
@@ -74,10 +75,15 @@ export function AccountCard({ item }: AccountCardProps) {
       <div className="h-0.5 bg-linear-to-r from-primary/40 to-primary/5" />
 
       {/* ── Row 1: account no (left) + price (right) ── */}
-      <div className="flex items-start justify-between gap-3 px-3 pt-2 pb-0.5">
+      <div className="flex items-start justify-between gap-2 px-2.5 pt-1.5 pb-0">
         <div className="min-w-0">
           <p className="truncate font-mono text-base font-semibold tracking-tight text-foreground">
             <span className="font-semibold text-muted-foreground/50">编号 </span>{item.account_no}
+          </p>
+        </div>
+        <div className="shrink-0">
+          <p className="text-base font-bold tabular-nums text-foreground">
+            <span className="font-bold text-muted-foreground">纯币 </span>{item.hafu_coins}M
           </p>
         </div>
         <div className="shrink-0 text-right">
@@ -87,56 +93,37 @@ export function AccountCard({ item }: AccountCardProps) {
           <p className="mt-1 text-xs text-muted-foreground/40">
             押{item.deposit} · {item.rental_days}天
           </p>
+          <p className="mt-0.5 text-xs font-semibold tabular-nums text-red-600/70 dark:text-red-400/70">
+            <span className="font-semibold text-red-500">比例 </span>1：{(item.hafu_coins / item.recycle_rent * 100).toFixed(0)}
+          </p>
         </div>
       </div>
 
       {/* ── Row 2: rank ── */}
       {item.rank && (
-        <p className="px-3 pb-1.5 text-sm font-medium tracking-wide text-amber-700/70 dark:text-amber-300/70">
+        <p className="px-2.5 pb-1 text-sm font-medium tracking-wide text-amber-700/70 dark:text-amber-300/70">
           {item.rank}
         </p>
       )}
 
 
 
-      {/* ── Row 3: key metrics ── */}
-      <div className="flex items-baseline gap-3 px-3 py-1">
-        <div className="shrink-0">
-          <p className="text-base font-bold tabular-nums text-foreground">
-            <span className="font-bold text-muted-foreground">纯币 </span>{item.hafu_coins}M
-          </p>
-        </div>
-        <div className="shrink-0">
-          <p className="text-xs font-semibold tabular-nums text-red-600/70 dark:text-red-400/70">
-            <span className="font-semibold text-red-500">比例 </span>1:{(item.hafu_coins / item.recycle_rent * 100).toFixed(0)}
-          </p>
-        </div>
-      </div>
-
-
-
 
       {/* —— Badges —— */}
-      <div className="flex flex-wrap items-center gap-1.5 px-3 py-1">
-        {/* Basic stats - amber */}
-        <span className="inline-flex items-center gap-1 rounded-sm bg-amber-500/8 px-1.5 py-0.5 text-sm font-medium">
+      <div className="flex flex-wrap items-center gap-1 px-2.5 py-0.5">
+        {/* Basic stats - green at max level */}
+        <span className={cn("inline-flex items-center gap-1 rounded-sm px-1.5 py-0.5 text-sm font-medium", item.stamina >= 7 ? "bg-green-400 text-green-950 font-bold ring-1 ring-green-300" : "bg-amber-500/8")}>
           <span className="text-muted-foreground/50">体力</span>
           <span className="text-foreground/85">{item.stamina}级</span>
         </span>
-        <span className="inline-flex items-center gap-1 rounded-sm bg-amber-500/8 px-1.5 py-0.5 text-sm font-medium">
+        <span className={cn("inline-flex items-center gap-1 rounded-sm px-1.5 py-0.5 text-sm font-medium", item.insurance_slots === "9格" ? "bg-green-400 text-green-950 font-bold ring-1 ring-green-300" : "bg-amber-500/8")}>
           <span className="text-muted-foreground/50">保险</span>
           <span className="text-foreground/85">{item.insurance_slots}</span>
         </span>
-        <span className="inline-flex items-center gap-1 rounded-sm bg-amber-500/8 px-1.5 py-0.5 text-sm font-medium">
+        <span className={cn("inline-flex items-center gap-1 rounded-sm px-1.5 py-0.5 text-sm font-medium", item.load_capacity >= 7 ? "bg-green-400 text-green-950 font-bold ring-1 ring-green-300" : "bg-amber-500/8")}>
           <span className="text-muted-foreground/50">负重</span>
           <span className="text-foreground/85">{item.load_capacity}级</span>
         </span>
-        {item.experience_cards > 0 && (
-          <span className="inline-flex items-center gap-1 rounded-sm bg-amber-500/8 px-1.5 py-0.5 text-sm font-medium">
-            <span className="text-muted-foreground/50">钻石</span>
-            <span className="text-foreground/85">{item.experience_cards}</span>
-          </span>
-        )}
 
         {/* Combat stats - sky */}
         <span className="inline-flex items-center gap-1 rounded-sm bg-sky-500/8 px-1.5 py-0.5 text-sm font-medium">
@@ -163,8 +150,8 @@ export function AccountCard({ item }: AccountCardProps) {
           </span>
         )}
         {gunSkins.length > 0 && (
-          <span className="inline-flex items-center gap-1 rounded-sm bg-sky-500/10 px-1.5 py-0.5 text-sm font-medium text-sky-700/80 dark:text-sky-300/80">
-            干员：{gunSkins.join(", ")}
+          <span className="inline-flex items-center gap-1 rounded-sm bg-red-500/10 px-1.5 py-0.5 text-sm font-medium text-red-700/80 dark:text-red-300/80">
+            干员皮：{gunSkins.join(", ")}
           </span>
         )}
         {weaponSkins.length > 0 && (
@@ -183,7 +170,7 @@ export function AccountCard({ item }: AccountCardProps) {
       </div>
 
       {item.remark && (
-        <div className="px-3 py-1">
+        <div className="px-2.5 py-0.5">
           <span className="inline-flex items-center gap-1 rounded-sm bg-muted/20 px-2 py-1 text-sm font-medium text-muted-foreground/70">
             备注：{item.remark}
           </span>
@@ -191,11 +178,11 @@ export function AccountCard({ item }: AccountCardProps) {
       )}
 
       {/* ── Footer ── */}
-      <footer className="mt-auto border-t border-border/20 px-3 py-1">
+      <footer className="mt-auto border-t border-border/20 px-2.5 py-0.5">
         <button
           type="button"
           onClick={handleCopy}
-          className="flex h-7 w-full items-center justify-center gap-1.5 rounded-sm text-sm text-muted-foreground/50 transition-colors hover:bg-muted/10 hover:text-foreground/80"
+          className="flex h-8 w-full items-center justify-center gap-1.5 rounded-md text-sm font-medium text-primary transition-all bg-primary/8 hover:bg-primary/15 hover:text-primary"
         >
           {copied ? (
             <>
